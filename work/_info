@@ -1,0 +1,94 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/altera/15.0
+Ei2s_in
+Z0 w1381782058
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z3 dC:/Users/Rick/Desktop/PCM3168-master/I2S_IN
+Z4 8C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/I2S_IN.vhd
+Z5 FC:/Users/Rick/Desktop/PCM3168-master/I2S_IN/I2S_IN.vhd
+l0
+L43
+VNTiS>g[mNF9A_FZm6z]gn1
+!s100 :<;^hVc7^`QcSCfoMSbPE3
+Z6 OV;C;10.3d;59
+32
+Z7 !s110 1522247177
+!i10b 1
+Z8 !s108 1522247177.575000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/I2S_IN.vhd|
+Z10 !s107 C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/I2S_IN.vhd|
+!i113 1
+Z11 o-work work -2002 -explicit
+Z12 tExplicit 1
+Artl
+R1
+R2
+DEx4 work 6 i2s_in 0 22 NTiS>g[mNF9A_FZm6z]gn1
+l74
+L67
+VYn<j5ZYoazaZ[fe8<ePFV1
+!s100 miB7T;:gcimeKVh01MSCN1
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Ei2s_in_tb_vhd
+R0
+Z13 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z14 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z15 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+R1
+R2
+R3
+Z16 8C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/I2S_IN_tb.vhd
+Z17 FC:/Users/Rick/Desktop/PCM3168-master/I2S_IN/I2S_IN_tb.vhd
+l0
+L17
+Ve0k?Z8L`5BD9gfn`5^Q?a1
+!s100 ]NbEJYN:Ee;^OMGOPDijd3
+R6
+32
+Z18 !s110 1522247178
+!i10b 1
+Z19 !s108 1522247178.166000
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/I2S_IN_tb.vhd|
+Z21 !s107 C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/I2S_IN_tb.vhd|
+!i113 1
+R11
+R12
+Abehavior
+R13
+R14
+R15
+R1
+R2
+DEx4 work 13 i2s_in_tb_vhd 0 22 e0k?Z8L`5BD9gfn`5^Q?a1
+l49
+L20
+V?oAT`Q;fl22IgPj^F>cMC1
+!s100 gkUoSEZe8o?AUe9H_eaX61
+R6
+32
+R18
+!i10b 1
+R19
+R20
+R21
+!i113 1
+R11
+R12
