@@ -42,9 +42,12 @@ set_location_assignment PIN_AG20 -to BIT_CLK -comment D33_GPIO0
 set_location_assignment PIN_AG21 -to DIN -comment D31_GPIO0
 
 #I2S External
-set_location_assignment PIN_AC22 -to LR_CLK_OUT -comment D35_GPIO1
-set_location_assignment PIN_AD21 -to BIT_CLK_OUT -comment D33_GPIO1
-set_location_assignment PIN_AF23 -to DOUT -comment D31_GPIO1
+#set_location_assignment PIN_AC22 -to LR_CLK_OUT -comment D35_GPIO1
+#set_location_assignment PIN_AD21 -to BIT_CLK_OUT -comment D33_GPIO1
+#set_location_assignment PIN_AF23 -to DOUT -comment D31_GPIO1
+
+#Switch
+set_location_assignment PIN_AB12 -to switch -comment switch
 
 
 #SPI SLAVE
@@ -100,12 +103,10 @@ set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name TOP_LEVEL_ENTITY Overall
+set_global_assignment -name VHDL_FILE volume_control.vhd
 set_global_assignment -name VHDL_FILE audio_interface.vhd
 set_global_assignment -name VHDL_FILE I2S_IN.vhd
 set_global_assignment -name VHDL_FILE Overall.vhd
 set_global_assignment -name VHDL_FILE spi_async.vhd
-set_global_assignment -name TOP_LEVEL_ENTITY Overall
-set_global_assignment -name VHDL_FILE CLK_GEN.vhd
-set_global_assignment -name VHDL_FILE I2S_OUT.vhd
-set_global_assignment -name VHDL_FILE I2S_IN_tb.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

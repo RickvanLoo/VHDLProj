@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for I2S_IN
-Thu Apr 05 16:19:51 2018
+Fri Apr 06 12:42:56 2018
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
 
 
@@ -150,8 +150,8 @@ agreement for further details.
 ; audio_interface:audioout|i2c_counter[9] ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { audio_interface:audioout|i2c_counter[9] } ;
 ; BIT_CLK                                 ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { BIT_CLK }                                 ;
 ; clk                                     ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk }                                     ;
-; clk_gen:clockgen|s_bit_clk              ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { clk_gen:clockgen|s_bit_clk }              ;
 ; CS                                      ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { CS }                                      ;
+; reset                                   ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { reset }                                   ;
 ; SCLK                                    ; Base ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500 ;            ;           ;             ;       ;        ;           ;            ;          ;        ;        ; { SCLK }                                    ;
 +-----------------------------------------+------+--------+------------+-------+-------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------+--------+---------------------------------------------+
 
@@ -161,11 +161,10 @@ agreement for further details.
 +------------+-----------------+-----------------------------------------+------------------------------------------------+
 ; Fmax       ; Restricted Fmax ; Clock Name                              ; Note                                           ;
 +------------+-----------------+-----------------------------------------+------------------------------------------------+
-; 144.28 MHz ; 144.28 MHz      ; clk                                     ;                                                ;
-; 288.68 MHz ; 288.68 MHz      ; clk_gen:clockgen|s_bit_clk              ;                                                ;
-; 420.52 MHz ; 420.52 MHz      ; audio_interface:audioout|i2c_counter[9] ;                                                ;
-; 425.71 MHz ; 425.71 MHz      ; BIT_CLK                                 ;                                                ;
-; 737.46 MHz ; 717.36 MHz      ; SCLK                                    ; limit due to minimum period restriction (tmin) ;
+; 159.34 MHz ; 159.34 MHz      ; clk                                     ;                                                ;
+; 434.22 MHz ; 434.22 MHz      ; audio_interface:audioout|i2c_counter[9] ;                                                ;
+; 472.59 MHz ; 472.59 MHz      ; SCLK                                    ;                                                ;
+; 553.4 MHz  ; 310.08 MHz      ; BIT_CLK                                 ; limit due to minimum period restriction (tmin) ;
 +------------+-----------------+-----------------------------------------+------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -181,12 +180,12 @@ HTML report is unavailable in plain text report export.
 +-----------------------------------------+---------+---------------+
 ; Clock                                   ; Slack   ; End Point TNS ;
 +-----------------------------------------+---------+---------------+
-; clk_gen:clockgen|s_bit_clk              ; -12.079 ; -31.962       ;
-; CS                                      ; -8.660  ; -118.325      ;
-; SCLK                                    ; -7.630  ; -61.024       ;
-; clk                                     ; -7.192  ; -311.526      ;
-; audio_interface:audioout|i2c_counter[9] ; -3.355  ; -12.097       ;
-; BIT_CLK                                 ; -1.349  ; -33.502       ;
+; CS                                      ; -10.538 ; -194.417      ;
+; clk                                     ; -7.874  ; -506.856      ;
+; SCLK                                    ; -7.580  ; -60.592       ;
+; reset                                   ; -4.255  ; -28.024       ;
+; audio_interface:audioout|i2c_counter[9] ; -4.070  ; -14.517       ;
+; BIT_CLK                                 ; -0.807  ; -9.138        ;
 +-----------------------------------------+---------+---------------+
 
 
@@ -195,12 +194,12 @@ HTML report is unavailable in plain text report export.
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; clk                                     ; -3.489 ; -4.212        ;
-; SCLK                                    ; -0.779 ; -6.179        ;
-; BIT_CLK                                 ; 0.218  ; 0.000         ;
-; audio_interface:audioout|i2c_counter[9] ; 0.464  ; 0.000         ;
-; clk_gen:clockgen|s_bit_clk              ; 0.466  ; 0.000         ;
-; CS                                      ; 1.718  ; 0.000         ;
+; SCLK                                    ; -0.868 ; -6.907        ;
+; clk                                     ; -0.182 ; -0.182        ;
+; BIT_CLK                                 ; 0.245  ; 0.000         ;
+; audio_interface:audioout|i2c_counter[9] ; 0.673  ; 0.000         ;
+; reset                                   ; 1.189  ; 0.000         ;
+; CS                                      ; 1.998  ; 0.000         ;
 +-----------------------------------------+--------+---------------+
 
 
@@ -209,17 +208,25 @@ HTML report is unavailable in plain text report export.
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; audio_interface:audioout|i2c_counter[9] ; -3.507 ; -13.841       ;
+; CS                                      ; -7.290 ; -130.220      ;
+; clk                                     ; -4.985 ; -725.560      ;
+; audio_interface:audioout|i2c_counter[9] ; -3.629 ; -14.507       ;
+; BIT_CLK                                 ; -2.286 ; -121.569      ;
+; SCLK                                    ; -1.969 ; -15.684       ;
 +-----------------------------------------+--------+---------------+
 
 
-+-----------------------------------------------------------------+
-; Slow 1100mV 85C Model Removal Summary                           ;
-+-----------------------------------------+-------+---------------+
-; Clock                                   ; Slack ; End Point TNS ;
-+-----------------------------------------+-------+---------------+
-; audio_interface:audioout|i2c_counter[9] ; 2.600 ; 0.000         ;
-+-----------------------------------------+-------+---------------+
++------------------------------------------------------------------+
+; Slow 1100mV 85C Model Removal Summary                            ;
++-----------------------------------------+--------+---------------+
+; Clock                                   ; Slack  ; End Point TNS ;
++-----------------------------------------+--------+---------------+
+; BIT_CLK                                 ; -4.870 ; -262.051      ;
+; SCLK                                    ; -4.525 ; -36.123       ;
+; clk                                     ; 1.024  ; 0.000         ;
+; CS                                      ; 1.465  ; 0.000         ;
+; audio_interface:audioout|i2c_counter[9] ; 2.015  ; 0.000         ;
++-----------------------------------------+--------+---------------+
 
 
 +------------------------------------------------------------------+
@@ -227,12 +234,12 @@ HTML report is unavailable in plain text report export.
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; clk                                     ; -0.410 ; -51.743       ;
-; BIT_CLK                                 ; -0.394 ; -32.435       ;
-; SCLK                                    ; -0.394 ; -4.581        ;
-; clk_gen:clockgen|s_bit_clk              ; -0.394 ; -3.363        ;
-; audio_interface:audioout|i2c_counter[9] ; -0.394 ; -2.603        ;
-; CS                                      ; 0.194  ; 0.000         ;
+; clk                                     ; -2.225 ; -137.818      ;
+; BIT_CLK                                 ; -2.225 ; -89.801       ;
+; SCLK                                    ; -0.394 ; -4.528        ;
+; audio_interface:audioout|i2c_counter[9] ; -0.394 ; -2.706        ;
+; reset                                   ; 0.093  ; 0.000         ;
+; CS                                      ; 0.140  ; 0.000         ;
 +-----------------------------------------+--------+---------------+
 
 
@@ -241,12 +248,14 @@ HTML report is unavailable in plain text report export.
 +-------------+------------+--------+--------+------------+-----------------+
 ; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-------------+------------+--------+--------+------------+-----------------+
-; DIN         ; BIT_CLK    ; 0.061  ; 0.423  ; Rise       ; BIT_CLK         ;
-; LR_CLK      ; BIT_CLK    ; -0.765 ; -0.462 ; Rise       ; BIT_CLK         ;
-; CS          ; SCLK       ; 6.079  ; 7.970  ; Rise       ; SCLK            ;
-; SDATA       ; SCLK       ; -0.032 ; 0.387  ; Rise       ; SCLK            ;
-; AUD_BCLK    ; clk        ; 2.594  ; 3.338  ; Rise       ; clk             ;
-; AUD_DACLRCK ; clk        ; 2.679  ; 3.627  ; Rise       ; clk             ;
+; DIN         ; BIT_CLK    ; 0.468  ; 1.012  ; Rise       ; BIT_CLK         ;
+; LR_CLK      ; BIT_CLK    ; -0.875 ; -0.570 ; Rise       ; BIT_CLK         ;
+; CS          ; SCLK       ; 5.933  ; 7.920  ; Rise       ; SCLK            ;
+; SDATA       ; SCLK       ; 1.001  ; 1.728  ; Rise       ; SCLK            ;
+; AUD_BCLK    ; clk        ; 2.166  ; 2.816  ; Rise       ; clk             ;
+; AUD_DACLRCK ; clk        ; 2.385  ; 3.364  ; Rise       ; clk             ;
+; reset       ; clk        ; 3.345  ; 3.737  ; Rise       ; clk             ;
+; switch      ; clk        ; 2.814  ; 3.888  ; Rise       ; clk             ;
 +-------------+------------+--------+--------+------------+-----------------+
 
 
@@ -255,12 +264,14 @@ HTML report is unavailable in plain text report export.
 +-------------+------------+--------+--------+------------+-----------------+
 ; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-------------+------------+--------+--------+------------+-----------------+
-; DIN         ; BIT_CLK    ; 5.984  ; 5.751  ; Rise       ; BIT_CLK         ;
-; LR_CLK      ; BIT_CLK    ; 6.604  ; 6.242  ; Rise       ; BIT_CLK         ;
-; CS          ; SCLK       ; 0.619  ; -0.602 ; Rise       ; SCLK            ;
-; SDATA       ; SCLK       ; 6.048  ; 5.740  ; Rise       ; SCLK            ;
-; AUD_BCLK    ; clk        ; -1.354 ; -2.017 ; Rise       ; clk             ;
-; AUD_DACLRCK ; clk        ; -1.414 ; -2.181 ; Rise       ; clk             ;
+; DIN         ; BIT_CLK    ; 5.633  ; 5.284  ; Rise       ; BIT_CLK         ;
+; LR_CLK      ; BIT_CLK    ; 6.648  ; 6.232  ; Rise       ; BIT_CLK         ;
+; CS          ; SCLK       ; 0.708  ; -0.644 ; Rise       ; SCLK            ;
+; SDATA       ; SCLK       ; 5.192  ; 4.712  ; Rise       ; SCLK            ;
+; AUD_BCLK    ; clk        ; -0.986 ; -1.568 ; Rise       ; clk             ;
+; AUD_DACLRCK ; clk        ; -1.147 ; -1.945 ; Rise       ; clk             ;
+; reset       ; clk        ; -0.494 ; -0.809 ; Rise       ; clk             ;
+; switch      ; clk        ; 0.192  ; -0.229 ; Rise       ; clk             ;
 +-------------+------------+--------+--------+------------+-----------------+
 
 
@@ -269,34 +280,30 @@ HTML report is unavailable in plain text report export.
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 ; Data Port   ; Clock Port                              ; Rise   ; Fall   ; Clock Edge ; Clock Reference                         ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
-; dig0[*]     ; CS                                      ; 11.021 ; 11.938 ; Fall       ; CS                                      ;
-;  dig0[0]    ; CS                                      ; 10.580 ; 11.210 ; Fall       ; CS                                      ;
-;  dig0[1]    ; CS                                      ; 10.287 ; 10.659 ; Fall       ; CS                                      ;
-;  dig0[2]    ; CS                                      ; 10.887 ; 11.591 ; Fall       ; CS                                      ;
-;  dig0[3]    ; CS                                      ; 9.768  ; 9.932  ; Fall       ; CS                                      ;
-;  dig0[4]    ; CS                                      ; 11.021 ; 11.938 ; Fall       ; CS                                      ;
-;  dig0[5]    ; CS                                      ; 10.430 ; 10.928 ; Fall       ; CS                                      ;
-;  dig0[6]    ; CS                                      ; 10.346 ; 11.107 ; Fall       ; CS                                      ;
-; dig1[*]     ; CS                                      ; 11.280 ; 12.268 ; Fall       ; CS                                      ;
-;  dig1[0]    ; CS                                      ; 10.687 ; 11.498 ; Fall       ; CS                                      ;
-;  dig1[1]    ; CS                                      ; 10.094 ; 10.610 ; Fall       ; CS                                      ;
-;  dig1[2]    ; CS                                      ; 11.280 ; 12.268 ; Fall       ; CS                                      ;
-;  dig1[3]    ; CS                                      ; 10.476 ; 10.914 ; Fall       ; CS                                      ;
-;  dig1[4]    ; CS                                      ; 10.753 ; 11.350 ; Fall       ; CS                                      ;
-;  dig1[5]    ; CS                                      ; 10.900 ; 11.444 ; Fall       ; CS                                      ;
-;  dig1[6]    ; CS                                      ; 10.376 ; 10.678 ; Fall       ; CS                                      ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 9.595  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 11.073 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 15.325 ; 17.431 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; AUD_DACDAT  ; clk                                     ; 17.156 ; 19.206 ; Rise       ; clk                                     ;
-; AUD_MCLK    ; clk                                     ; 10.917 ; 11.503 ; Rise       ; clk                                     ;
-; I2C_SCLK    ; clk                                     ; 13.610 ; 15.002 ; Rise       ; clk                                     ;
-; I2C_SDAT    ; clk                                     ; 16.675 ; 18.392 ; Rise       ; clk                                     ;
-; LR_CLK_OUT  ; clk                                     ; 10.390 ; 10.282 ; Rise       ; clk                                     ;
-; init_finish ; clk                                     ; 9.735  ; 9.993  ; Rise       ; clk                                     ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ; 9.285  ;        ; Rise       ; clk_gen:clockgen|s_bit_clk              ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ;        ; 10.080 ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
-; DOUT        ; clk_gen:clockgen|s_bit_clk              ; 7.703  ; 7.797  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
+; dig0[*]     ; CS                                      ; 12.019 ; 12.582 ; Fall       ; CS                                      ;
+;  dig0[0]    ; CS                                      ; 11.678 ; 12.047 ; Fall       ; CS                                      ;
+;  dig0[1]    ; CS                                      ; 12.019 ; 12.582 ; Fall       ; CS                                      ;
+;  dig0[2]    ; CS                                      ; 11.895 ; 12.448 ; Fall       ; CS                                      ;
+;  dig0[3]    ; CS                                      ; 10.970 ; 11.133 ; Fall       ; CS                                      ;
+;  dig0[4]    ; CS                                      ; 11.807 ; 12.373 ; Fall       ; CS                                      ;
+;  dig0[5]    ; CS                                      ; 11.782 ; 12.262 ; Fall       ; CS                                      ;
+;  dig0[6]    ; CS                                      ; 10.972 ; 11.216 ; Fall       ; CS                                      ;
+; dig1[*]     ; CS                                      ; 11.770 ; 12.375 ; Fall       ; CS                                      ;
+;  dig1[0]    ; CS                                      ; 11.152 ; 11.465 ; Fall       ; CS                                      ;
+;  dig1[1]    ; CS                                      ; 11.213 ; 11.563 ; Fall       ; CS                                      ;
+;  dig1[2]    ; CS                                      ; 11.770 ; 12.375 ; Fall       ; CS                                      ;
+;  dig1[3]    ; CS                                      ; 11.731 ; 12.247 ; Fall       ; CS                                      ;
+;  dig1[4]    ; CS                                      ; 11.634 ; 12.126 ; Fall       ; CS                                      ;
+;  dig1[5]    ; CS                                      ; 11.550 ; 12.044 ; Fall       ; CS                                      ;
+;  dig1[6]    ; CS                                      ; 11.335 ; 11.760 ; Fall       ; CS                                      ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 9.210  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 10.917 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 15.919 ; 17.834 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; AUD_DACDAT  ; clk                                     ; 15.808 ; 18.071 ; Rise       ; clk                                     ;
+; AUD_MCLK    ; clk                                     ; 13.928 ; 15.956 ; Rise       ; clk                                     ;
+; I2C_SCLK    ; clk                                     ; 12.982 ; 14.720 ; Rise       ; clk                                     ;
+; I2C_SDAT    ; clk                                     ; 16.136 ; 18.305 ; Rise       ; clk                                     ;
+; init_finish ; clk                                     ; 9.668  ; 9.895  ; Rise       ; clk                                     ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 
 
@@ -305,34 +312,30 @@ HTML report is unavailable in plain text report export.
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 ; Data Port   ; Clock Port                              ; Rise   ; Fall   ; Clock Edge ; Clock Reference                         ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
-; dig0[*]     ; CS                                      ; 7.694  ; 7.837  ; Fall       ; CS                                      ;
-;  dig0[0]    ; CS                                      ; 8.316  ; 8.730  ; Fall       ; CS                                      ;
-;  dig0[1]    ; CS                                      ; 8.111  ; 8.380  ; Fall       ; CS                                      ;
-;  dig0[2]    ; CS                                      ; 8.572  ; 9.052  ; Fall       ; CS                                      ;
-;  dig0[3]    ; CS                                      ; 7.694  ; 7.837  ; Fall       ; CS                                      ;
-;  dig0[4]    ; CS                                      ; 8.705  ; 9.302  ; Fall       ; CS                                      ;
-;  dig0[5]    ; CS                                      ; 8.253  ; 8.622  ; Fall       ; CS                                      ;
-;  dig0[6]    ; CS                                      ; 8.055  ; 8.509  ; Fall       ; CS                                      ;
-; dig1[*]     ; CS                                      ; 7.890  ; 8.219  ; Fall       ; CS                                      ;
-;  dig1[0]    ; CS                                      ; 8.385  ; 8.897  ; Fall       ; CS                                      ;
-;  dig1[1]    ; CS                                      ; 7.890  ; 8.219  ; Fall       ; CS                                      ;
-;  dig1[2]    ; CS                                      ; 8.925  ; 9.595  ; Fall       ; CS                                      ;
-;  dig1[3]    ; CS                                      ; 8.265  ; 8.562  ; Fall       ; CS                                      ;
-;  dig1[4]    ; CS                                      ; 8.520  ; 8.958  ; Fall       ; CS                                      ;
-;  dig1[5]    ; CS                                      ; 8.535  ; 8.945  ; Fall       ; CS                                      ;
-;  dig1[6]    ; CS                                      ; 8.098  ; 8.339  ; Fall       ; CS                                      ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 8.672  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 9.826  ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 10.890 ; 12.730 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; AUD_DACDAT  ; clk                                     ; 12.392 ; 14.134 ; Rise       ; clk                                     ;
-; AUD_MCLK    ; clk                                     ; 9.961  ; 10.465 ; Rise       ; clk                                     ;
-; I2C_SCLK    ; clk                                     ; 11.757 ; 12.709 ; Rise       ; clk                                     ;
-; I2C_SDAT    ; clk                                     ; 12.578 ; 14.349 ; Rise       ; clk                                     ;
-; LR_CLK_OUT  ; clk                                     ; 8.529  ; 8.445  ; Rise       ; clk                                     ;
-; init_finish ; clk                                     ; 7.921  ; 8.106  ; Rise       ; clk                                     ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ; 7.523  ;        ; Rise       ; clk_gen:clockgen|s_bit_clk              ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ;        ; 8.041  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
-; DOUT        ; clk_gen:clockgen|s_bit_clk              ; 5.869  ; 5.941  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
+; dig0[*]     ; CS                                      ; 8.733  ; 8.835  ; Fall       ; CS                                      ;
+;  dig0[0]    ; CS                                      ; 9.363  ; 9.623  ; Fall       ; CS                                      ;
+;  dig0[1]    ; CS                                      ; 9.651  ; 10.057 ; Fall       ; CS                                      ;
+;  dig0[2]    ; CS                                      ; 9.514  ; 9.900  ; Fall       ; CS                                      ;
+;  dig0[3]    ; CS                                      ; 8.733  ; 8.835  ; Fall       ; CS                                      ;
+;  dig0[4]    ; CS                                      ; 9.472  ; 9.871  ; Fall       ; CS                                      ;
+;  dig0[5]    ; CS                                      ; 9.377  ; 9.701  ; Fall       ; CS                                      ;
+;  dig0[6]    ; CS                                      ; 8.750  ; 8.926  ; Fall       ; CS                                      ;
+; dig1[*]     ; CS                                      ; 8.919  ; 9.115  ; Fall       ; CS                                      ;
+;  dig1[0]    ; CS                                      ; 8.919  ; 9.115  ; Fall       ; CS                                      ;
+;  dig1[1]    ; CS                                      ; 8.963  ; 9.194  ; Fall       ; CS                                      ;
+;  dig1[2]    ; CS                                      ; 9.465  ; 9.911  ; Fall       ; CS                                      ;
+;  dig1[3]    ; CS                                      ; 9.464  ; 9.880  ; Fall       ; CS                                      ;
+;  dig1[4]    ; CS                                      ; 9.222  ; 9.590  ; Fall       ; CS                                      ;
+;  dig1[5]    ; CS                                      ; 9.305  ; 9.711  ; Fall       ; CS                                      ;
+;  dig1[6]    ; CS                                      ; 9.082  ; 9.379  ; Fall       ; CS                                      ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 8.293  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 9.589  ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 10.615 ; 12.265 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; AUD_DACDAT  ; clk                                     ; 12.374 ; 14.182 ; Rise       ; clk                                     ;
+; AUD_MCLK    ; clk                                     ; 12.707 ; 14.520 ; Rise       ; clk                                     ;
+; I2C_SCLK    ; clk                                     ; 11.476 ; 12.758 ; Rise       ; clk                                     ;
+; I2C_SDAT    ; clk                                     ; 12.852 ; 14.617 ; Rise       ; clk                                     ;
+; init_finish ; clk                                     ; 7.873  ; 8.046  ; Rise       ; clk                                     ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 
 
@@ -341,7 +344,7 @@ HTML report is unavailable in plain text report export.
 +-----------+------------+--------+--------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-----------+------------+--------+--------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 14.496 ; 14.529 ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 15.336 ; 15.369 ; Rise       ; clk             ;
 +-----------+------------+--------+--------+------------+-----------------+
 
 
@@ -350,7 +353,7 @@ HTML report is unavailable in plain text report export.
 +-----------+------------+--------+--------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-----------+------------+--------+--------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 13.034 ; 13.066 ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 13.507 ; 13.539 ; Rise       ; clk             ;
 +-----------+------------+--------+--------+------------+-----------------+
 
 
@@ -359,7 +362,7 @@ HTML report is unavailable in plain text report export.
 +-----------+------------+-----------+-----------+------------+-----------------+
 ; Data Port ; Clock Port ; 0 to Hi-Z ; 1 to Hi-Z ; Clock Edge ; Clock Reference ;
 +-----------+------------+-----------+-----------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 16.424    ; 16.391    ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 17.173    ; 17.140    ; Rise       ; clk             ;
 +-----------+------------+-----------+-----------+------------+-----------------+
 
 
@@ -368,7 +371,7 @@ HTML report is unavailable in plain text report export.
 +-----------+------------+-----------+-----------+------------+-----------------+
 ; Data Port ; Clock Port ; 0 to Hi-Z ; 1 to Hi-Z ; Clock Edge ; Clock Reference ;
 +-----------+------------+-----------+-----------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 14.663    ; 14.631    ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 15.239    ; 15.207    ; Rise       ; clk             ;
 +-----------+------------+-----------+-----------+------------+-----------------+
 
 
@@ -383,11 +386,10 @@ No synchronizer chains to report.
 +------------+-----------------+-----------------------------------------+------------------------------------------------+
 ; Fmax       ; Restricted Fmax ; Clock Name                              ; Note                                           ;
 +------------+-----------------+-----------------------------------------+------------------------------------------------+
-; 148.94 MHz ; 148.94 MHz      ; clk                                     ;                                                ;
-; 295.16 MHz ; 295.16 MHz      ; clk_gen:clockgen|s_bit_clk              ;                                                ;
-; 434.03 MHz ; 434.03 MHz      ; audio_interface:audioout|i2c_counter[9] ;                                                ;
-; 437.06 MHz ; 437.06 MHz      ; BIT_CLK                                 ;                                                ;
-; 747.38 MHz ; 717.36 MHz      ; SCLK                                    ; limit due to minimum period restriction (tmin) ;
+; 165.1 MHz  ; 165.1 MHz       ; clk                                     ;                                                ;
+; 438.4 MHz  ; 438.4 MHz       ; audio_interface:audioout|i2c_counter[9] ;                                                ;
+; 484.73 MHz ; 484.73 MHz      ; SCLK                                    ;                                                ;
+; 580.05 MHz ; 310.08 MHz      ; BIT_CLK                                 ; limit due to minimum period restriction (tmin) ;
 +------------+-----------------+-----------------------------------------+------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -397,12 +399,12 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------+---------+---------------+
 ; Clock                                   ; Slack   ; End Point TNS ;
 +-----------------------------------------+---------+---------------+
-; clk_gen:clockgen|s_bit_clk              ; -11.933 ; -32.391       ;
-; CS                                      ; -8.486  ; -116.589      ;
-; SCLK                                    ; -7.183  ; -57.461       ;
-; clk                                     ; -6.885  ; -296.184      ;
-; audio_interface:audioout|i2c_counter[9] ; -3.464  ; -12.527       ;
-; BIT_CLK                                 ; -1.288  ; -31.389       ;
+; CS                                      ; -10.428 ; -191.838      ;
+; clk                                     ; -7.684  ; -496.336      ;
+; SCLK                                    ; -7.117  ; -56.871       ;
+; audio_interface:audioout|i2c_counter[9] ; -4.157  ; -14.598       ;
+; reset                                   ; -4.097  ; -27.342       ;
+; BIT_CLK                                 ; -0.724  ; -6.078        ;
 +-----------------------------------------+---------+---------------+
 
 
@@ -411,12 +413,12 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; clk                                     ; -3.564 ; -6.389        ;
-; SCLK                                    ; -1.127 ; -8.968        ;
-; BIT_CLK                                 ; 0.203  ; 0.000         ;
-; audio_interface:audioout|i2c_counter[9] ; 0.474  ; 0.000         ;
-; clk_gen:clockgen|s_bit_clk              ; 0.495  ; 0.000         ;
-; CS                                      ; 1.666  ; 0.000         ;
+; SCLK                                    ; -1.202 ; -9.556        ;
+; clk                                     ; -0.368 ; -0.596        ;
+; BIT_CLK                                 ; 0.135  ; 0.000         ;
+; audio_interface:audioout|i2c_counter[9] ; 0.692  ; 0.000         ;
+; reset                                   ; 1.072  ; 0.000         ;
+; CS                                      ; 1.961  ; 0.000         ;
 +-----------------------------------------+--------+---------------+
 
 
@@ -425,17 +427,25 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; audio_interface:audioout|i2c_counter[9] ; -3.568 ; -14.238       ;
+; CS                                      ; -6.974 ; -124.362      ;
+; clk                                     ; -4.774 ; -692.284      ;
+; audio_interface:audioout|i2c_counter[9] ; -3.648 ; -14.585       ;
+; BIT_CLK                                 ; -2.224 ; -118.349      ;
+; SCLK                                    ; -1.914 ; -15.240       ;
 +-----------------------------------------+--------+---------------+
 
 
-+-----------------------------------------------------------------+
-; Slow 1100mV 0C Model Removal Summary                            ;
-+-----------------------------------------+-------+---------------+
-; Clock                                   ; Slack ; End Point TNS ;
-+-----------------------------------------+-------+---------------+
-; audio_interface:audioout|i2c_counter[9] ; 2.788 ; 0.000         ;
-+-----------------------------------------+-------+---------------+
++------------------------------------------------------------------+
+; Slow 1100mV 0C Model Removal Summary                             ;
++-----------------------------------------+--------+---------------+
+; Clock                                   ; Slack  ; End Point TNS ;
++-----------------------------------------+--------+---------------+
+; BIT_CLK                                 ; -4.740 ; -253.596      ;
+; SCLK                                    ; -4.341 ; -34.645       ;
+; clk                                     ; 0.895  ; 0.000         ;
+; CS                                      ; 1.197  ; 0.000         ;
+; audio_interface:audioout|i2c_counter[9] ; 1.995  ; 0.000         ;
++-----------------------------------------+--------+---------------+
 
 
 +------------------------------------------------------------------+
@@ -443,12 +453,12 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; clk                                     ; -0.394 ; -55.668       ;
-; BIT_CLK                                 ; -0.394 ; -30.031       ;
-; SCLK                                    ; -0.394 ; -4.240        ;
-; clk_gen:clockgen|s_bit_clk              ; -0.394 ; -3.200        ;
-; audio_interface:audioout|i2c_counter[9] ; -0.394 ; -2.327        ;
-; CS                                      ; 0.178  ; 0.000         ;
+; clk                                     ; -2.225 ; -144.042      ;
+; BIT_CLK                                 ; -2.225 ; -88.781       ;
+; SCLK                                    ; -0.394 ; -4.121        ;
+; audio_interface:audioout|i2c_counter[9] ; -0.394 ; -2.583        ;
+; reset                                   ; 0.105  ; 0.000         ;
+; CS                                      ; 0.114  ; 0.000         ;
 +-----------------------------------------+--------+---------------+
 
 
@@ -457,12 +467,14 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------------+------------+--------+--------+------------+-----------------+
 ; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-------------+------------+--------+--------+------------+-----------------+
-; DIN         ; BIT_CLK    ; 0.009  ; 0.364  ; Rise       ; BIT_CLK         ;
-; LR_CLK      ; BIT_CLK    ; -0.858 ; -0.574 ; Rise       ; BIT_CLK         ;
-; CS          ; SCLK       ; 5.524  ; 7.523  ; Rise       ; SCLK            ;
-; SDATA       ; SCLK       ; -0.043 ; 0.355  ; Rise       ; SCLK            ;
-; AUD_BCLK    ; clk        ; 2.138  ; 2.953  ; Rise       ; clk             ;
-; AUD_DACLRCK ; clk        ; 2.270  ; 3.219  ; Rise       ; clk             ;
+; DIN         ; BIT_CLK    ; 0.413  ; 0.928  ; Rise       ; BIT_CLK         ;
+; LR_CLK      ; BIT_CLK    ; -0.967 ; -0.634 ; Rise       ; BIT_CLK         ;
+; CS          ; SCLK       ; 5.406  ; 7.457  ; Rise       ; SCLK            ;
+; SDATA       ; SCLK       ; 0.936  ; 1.638  ; Rise       ; SCLK            ;
+; AUD_BCLK    ; clk        ; 1.731  ; 2.430  ; Rise       ; clk             ;
+; AUD_DACLRCK ; clk        ; 2.030  ; 2.974  ; Rise       ; clk             ;
+; reset       ; clk        ; 3.188  ; 3.527  ; Rise       ; clk             ;
+; switch      ; clk        ; 2.637  ; 3.661  ; Rise       ; clk             ;
 +-------------+------------+--------+--------+------------+-----------------+
 
 
@@ -471,12 +483,14 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------------+------------+--------+--------+------------+-----------------+
 ; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-------------+------------+--------+--------+------------+-----------------+
-; DIN         ; BIT_CLK    ; 5.885  ; 5.649  ; Rise       ; BIT_CLK         ;
-; LR_CLK      ; BIT_CLK    ; 6.504  ; 6.144  ; Rise       ; BIT_CLK         ;
-; CS          ; SCLK       ; 0.967  ; -0.417 ; Rise       ; SCLK            ;
-; SDATA       ; SCLK       ; 5.911  ; 5.613  ; Rise       ; SCLK            ;
-; AUD_BCLK    ; clk        ; -0.929 ; -1.593 ; Rise       ; clk             ;
-; AUD_DACLRCK ; clk        ; -1.033 ; -1.764 ; Rise       ; clk             ;
+; DIN         ; BIT_CLK    ; 5.538  ; 5.197  ; Rise       ; BIT_CLK         ;
+; LR_CLK      ; BIT_CLK    ; 6.579  ; 6.147  ; Rise       ; BIT_CLK         ;
+; CS          ; SCLK       ; 1.042  ; -0.450 ; Rise       ; SCLK            ;
+; SDATA       ; SCLK       ; 5.100  ; 4.624  ; Rise       ; SCLK            ;
+; AUD_BCLK    ; clk        ; -0.579 ; -1.147 ; Rise       ; clk             ;
+; AUD_DACLRCK ; clk        ; -0.816 ; -1.538 ; Rise       ; clk             ;
+; reset       ; clk        ; -0.262 ; -0.576 ; Rise       ; clk             ;
+; switch      ; clk        ; 0.315  ; -0.090 ; Rise       ; clk             ;
 +-------------+------------+--------+--------+------------+-----------------+
 
 
@@ -485,34 +499,30 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 ; Data Port   ; Clock Port                              ; Rise   ; Fall   ; Clock Edge ; Clock Reference                         ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
-; dig0[*]     ; CS                                      ; 10.568 ; 11.480 ; Fall       ; CS                                      ;
-;  dig0[0]    ; CS                                      ; 10.112 ; 10.777 ; Fall       ; CS                                      ;
-;  dig0[1]    ; CS                                      ; 9.791  ; 10.242 ; Fall       ; CS                                      ;
-;  dig0[2]    ; CS                                      ; 10.456 ; 11.185 ; Fall       ; CS                                      ;
-;  dig0[3]    ; CS                                      ; 9.340  ; 9.578  ; Fall       ; CS                                      ;
-;  dig0[4]    ; CS                                      ; 10.568 ; 11.480 ; Fall       ; CS                                      ;
-;  dig0[5]    ; CS                                      ; 9.981  ; 10.525 ; Fall       ; CS                                      ;
-;  dig0[6]    ; CS                                      ; 9.905  ; 10.672 ; Fall       ; CS                                      ;
-; dig1[*]     ; CS                                      ; 10.791 ; 11.775 ; Fall       ; CS                                      ;
-;  dig1[0]    ; CS                                      ; 10.251 ; 11.058 ; Fall       ; CS                                      ;
-;  dig1[1]    ; CS                                      ; 9.672  ; 10.218 ; Fall       ; CS                                      ;
-;  dig1[2]    ; CS                                      ; 10.791 ; 11.775 ; Fall       ; CS                                      ;
-;  dig1[3]    ; CS                                      ; 9.987  ; 10.472 ; Fall       ; CS                                      ;
-;  dig1[4]    ; CS                                      ; 10.280 ; 10.917 ; Fall       ; CS                                      ;
-;  dig1[5]    ; CS                                      ; 10.465 ; 11.063 ; Fall       ; CS                                      ;
-;  dig1[6]    ; CS                                      ; 9.993  ; 10.356 ; Fall       ; CS                                      ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 8.964  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 10.436 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 14.579 ; 16.635 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; AUD_DACDAT  ; clk                                     ; 16.700 ; 18.678 ; Rise       ; clk                                     ;
-; AUD_MCLK    ; clk                                     ; 10.376 ; 11.079 ; Rise       ; clk                                     ;
-; I2C_SCLK    ; clk                                     ; 13.043 ; 14.462 ; Rise       ; clk                                     ;
-; I2C_SDAT    ; clk                                     ; 16.206 ; 17.800 ; Rise       ; clk                                     ;
-; LR_CLK_OUT  ; clk                                     ; 10.195 ; 10.032 ; Rise       ; clk                                     ;
-; init_finish ; clk                                     ; 9.539  ; 9.793  ; Rise       ; clk                                     ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ; 8.753  ;        ; Rise       ; clk_gen:clockgen|s_bit_clk              ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ;        ; 9.627  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
-; DOUT        ; clk_gen:clockgen|s_bit_clk              ; 7.262  ; 7.397  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
+; dig0[*]     ; CS                                      ; 11.539 ; 12.177 ; Fall       ; CS                                      ;
+;  dig0[0]    ; CS                                      ; 11.209 ; 11.659 ; Fall       ; CS                                      ;
+;  dig0[1]    ; CS                                      ; 11.539 ; 12.177 ; Fall       ; CS                                      ;
+;  dig0[2]    ; CS                                      ; 11.402 ; 12.031 ; Fall       ; CS                                      ;
+;  dig0[3]    ; CS                                      ; 10.476 ; 10.733 ; Fall       ; CS                                      ;
+;  dig0[4]    ; CS                                      ; 11.278 ; 11.892 ; Fall       ; CS                                      ;
+;  dig0[5]    ; CS                                      ; 11.278 ; 11.842 ; Fall       ; CS                                      ;
+;  dig0[6]    ; CS                                      ; 10.510 ; 10.832 ; Fall       ; CS                                      ;
+; dig1[*]     ; CS                                      ; 11.259 ; 11.926 ; Fall       ; CS                                      ;
+;  dig1[0]    ; CS                                      ; 10.661 ; 11.053 ; Fall       ; CS                                      ;
+;  dig1[1]    ; CS                                      ; 10.733 ; 11.149 ; Fall       ; CS                                      ;
+;  dig1[2]    ; CS                                      ; 11.259 ; 11.926 ; Fall       ; CS                                      ;
+;  dig1[3]    ; CS                                      ; 11.227 ; 11.813 ; Fall       ; CS                                      ;
+;  dig1[4]    ; CS                                      ; 11.179 ; 11.729 ; Fall       ; CS                                      ;
+;  dig1[5]    ; CS                                      ; 11.066 ; 11.629 ; Fall       ; CS                                      ;
+;  dig1[6]    ; CS                                      ; 10.838 ; 11.324 ; Fall       ; CS                                      ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 8.706  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 10.386 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 15.183 ; 17.041 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; AUD_DACDAT  ; clk                                     ; 15.443 ; 17.616 ; Rise       ; clk                                     ;
+; AUD_MCLK    ; clk                                     ; 13.424 ; 15.442 ; Rise       ; clk                                     ;
+; I2C_SCLK    ; clk                                     ; 12.522 ; 14.240 ; Rise       ; clk                                     ;
+; I2C_SDAT    ; clk                                     ; 15.639 ; 17.783 ; Rise       ; clk                                     ;
+; init_finish ; clk                                     ; 9.472  ; 9.696  ; Rise       ; clk                                     ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 
 
@@ -521,34 +531,30 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 ; Data Port   ; Clock Port                              ; Rise   ; Fall   ; Clock Edge ; Clock Reference                         ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
-; dig0[*]     ; CS                                      ; 7.320  ; 7.538  ; Fall       ; CS                                      ;
-;  dig0[0]    ; CS                                      ; 7.914  ; 8.383  ; Fall       ; CS                                      ;
-;  dig0[1]    ; CS                                      ; 7.679  ; 8.030  ; Fall       ; CS                                      ;
-;  dig0[2]    ; CS                                      ; 8.202  ; 8.732  ; Fall       ; CS                                      ;
-;  dig0[3]    ; CS                                      ; 7.320  ; 7.538  ; Fall       ; CS                                      ;
-;  dig0[4]    ; CS                                      ; 8.312  ; 8.932  ; Fall       ; CS                                      ;
-;  dig0[5]    ; CS                                      ; 7.860  ; 8.279  ; Fall       ; CS                                      ;
-;  dig0[6]    ; CS                                      ; 7.680  ; 8.174  ; Fall       ; CS                                      ;
-; dig1[*]     ; CS                                      ; 7.527  ; 7.905  ; Fall       ; CS                                      ;
-;  dig1[0]    ; CS                                      ; 8.010  ; 8.551  ; Fall       ; CS                                      ;
-;  dig1[1]    ; CS                                      ; 7.527  ; 7.905  ; Fall       ; CS                                      ;
-;  dig1[2]    ; CS                                      ; 8.503  ; 9.194  ; Fall       ; CS                                      ;
-;  dig1[3]    ; CS                                      ; 7.841  ; 8.190  ; Fall       ; CS                                      ;
-;  dig1[4]    ; CS                                      ; 8.109  ; 8.592  ; Fall       ; CS                                      ;
-;  dig1[5]    ; CS                                      ; 8.120  ; 8.585  ; Fall       ; CS                                      ;
-;  dig1[6]    ; CS                                      ; 7.729  ; 8.031  ; Fall       ; CS                                      ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 8.086  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 9.209  ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 10.303 ; 12.026 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; AUD_DACDAT  ; clk                                     ; 11.975 ; 13.629 ; Rise       ; clk                                     ;
-; AUD_MCLK    ; clk                                     ; 9.462  ; 10.028 ; Rise       ; clk                                     ;
-; I2C_SCLK    ; clk                                     ; 11.247 ; 12.174 ; Rise       ; clk                                     ;
-; I2C_SDAT    ; clk                                     ; 12.173 ; 13.801 ; Rise       ; clk                                     ;
-; LR_CLK_OUT  ; clk                                     ; 8.379  ; 8.240  ; Rise       ; clk                                     ;
-; init_finish ; clk                                     ; 7.768  ; 7.966  ; Rise       ; clk                                     ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ; 7.054  ;        ; Rise       ; clk_gen:clockgen|s_bit_clk              ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ;        ; 7.657  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
-; DOUT        ; clk_gen:clockgen|s_bit_clk              ; 5.534  ; 5.652  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
+; dig0[*]     ; CS                                      ; 8.298  ; 8.495  ; Fall       ; CS                                      ;
+;  dig0[0]    ; CS                                      ; 8.946  ; 9.310  ; Fall       ; CS                                      ;
+;  dig0[1]    ; CS                                      ; 9.224  ; 9.715  ; Fall       ; CS                                      ;
+;  dig0[2]    ; CS                                      ; 9.079  ; 9.547  ; Fall       ; CS                                      ;
+;  dig0[3]    ; CS                                      ; 8.298  ; 8.495  ; Fall       ; CS                                      ;
+;  dig0[4]    ; CS                                      ; 9.002  ; 9.470  ; Fall       ; CS                                      ;
+;  dig0[5]    ; CS                                      ; 8.926  ; 9.356  ; Fall       ; CS                                      ;
+;  dig0[6]    ; CS                                      ; 8.345  ; 8.602  ; Fall       ; CS                                      ;
+; dig1[*]     ; CS                                      ; 8.490  ; 8.787  ; Fall       ; CS                                      ;
+;  dig1[0]    ; CS                                      ; 8.490  ; 8.787  ; Fall       ; CS                                      ;
+;  dig1[1]    ; CS                                      ; 8.545  ; 8.858  ; Fall       ; CS                                      ;
+;  dig1[2]    ; CS                                      ; 9.020  ; 9.530  ; Fall       ; CS                                      ;
+;  dig1[3]    ; CS                                      ; 9.021  ; 9.502  ; Fall       ; CS                                      ;
+;  dig1[4]    ; CS                                      ; 8.787  ; 9.209  ; Fall       ; CS                                      ;
+;  dig1[5]    ; CS                                      ; 8.878  ; 9.347  ; Fall       ; CS                                      ;
+;  dig1[6]    ; CS                                      ; 8.649  ; 9.032  ; Fall       ; CS                                      ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 7.821  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 9.061  ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 10.141 ; 11.714 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; AUD_DACDAT  ; clk                                     ; 11.978 ; 13.670 ; Rise       ; clk                                     ;
+; AUD_MCLK    ; clk                                     ; 12.235 ; 13.997 ; Rise       ; clk                                     ;
+; I2C_SCLK    ; clk                                     ; 11.022 ; 12.253 ; Rise       ; clk                                     ;
+; I2C_SDAT    ; clk                                     ; 12.414 ; 14.080 ; Rise       ; clk                                     ;
+; init_finish ; clk                                     ; 7.718  ; 7.906  ; Rise       ; clk                                     ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 
 
@@ -557,7 +563,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------+------------+--------+--------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-----------+------------+--------+--------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 13.967 ; 14.018 ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 14.822 ; 14.873 ; Rise       ; clk             ;
 +-----------+------------+--------+--------+------------+-----------------+
 
 
@@ -566,7 +572,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------+------------+--------+--------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-----------+------------+--------+--------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 12.595 ; 12.645 ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 13.054 ; 13.104 ; Rise       ; clk             ;
 +-----------+------------+--------+--------+------------+-----------------+
 
 
@@ -575,7 +581,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------+------------+-----------+-----------+------------+-----------------+
 ; Data Port ; Clock Port ; 0 to Hi-Z ; 1 to Hi-Z ; Clock Edge ; Clock Reference ;
 +-----------+------------+-----------+-----------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 15.881    ; 15.830    ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 16.612    ; 16.561    ; Rise       ; clk             ;
 +-----------+------------+-----------+-----------+------------+-----------------+
 
 
@@ -584,7 +590,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +-----------+------------+-----------+-----------+------------+-----------------+
 ; Data Port ; Clock Port ; 0 to Hi-Z ; 1 to Hi-Z ; Clock Edge ; Clock Reference ;
 +-----------+------------+-----------+-----------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 14.155    ; 14.105    ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 14.696    ; 14.646    ; Rise       ; clk             ;
 +-----------+------------+-----------+-----------+------------+-----------------+
 
 
@@ -599,27 +605,27 @@ No synchronizer chains to report.
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; clk_gen:clockgen|s_bit_clk              ; -6.595 ; -17.355       ;
-; SCLK                                    ; -5.665 ; -45.284       ;
-; CS                                      ; -4.270 ; -57.417       ;
-; clk                                     ; -3.787 ; -148.914      ;
-; audio_interface:audioout|i2c_counter[9] ; -1.712 ; -6.014        ;
-; BIT_CLK                                 ; -0.576 ; -5.833        ;
+; SCLK                                    ; -5.736 ; -45.855       ;
+; CS                                      ; -5.437 ; -97.833       ;
+; clk                                     ; -4.941 ; -264.716      ;
+; reset                                   ; -2.558 ; -16.445       ;
+; audio_interface:audioout|i2c_counter[9] ; -2.144 ; -7.475        ;
+; BIT_CLK                                 ; -0.125 ; -0.467        ;
 +-----------------------------------------+--------+---------------+
 
 
-+------------------------------------------------------------------+
-; Fast 1100mV 85C Model Hold Summary                               ;
-+-----------------------------------------+--------+---------------+
-; Clock                                   ; Slack  ; End Point TNS ;
-+-----------------------------------------+--------+---------------+
-; clk                                     ; -2.045 ; -2.111        ;
-; SCLK                                    ; 0.051  ; 0.000         ;
-; BIT_CLK                                 ; 0.126  ; 0.000         ;
-; clk_gen:clockgen|s_bit_clk              ; 0.244  ; 0.000         ;
-; audio_interface:audioout|i2c_counter[9] ; 0.291  ; 0.000         ;
-; CS                                      ; 0.863  ; 0.000         ;
-+-----------------------------------------+--------+---------------+
++-----------------------------------------------------------------+
+; Fast 1100mV 85C Model Hold Summary                              ;
++-----------------------------------------+-------+---------------+
+; Clock                                   ; Slack ; End Point TNS ;
++-----------------------------------------+-------+---------------+
+; SCLK                                    ; 0.036 ; 0.000         ;
+; clk                                     ; 0.054 ; 0.000         ;
+; BIT_CLK                                 ; 0.136 ; 0.000         ;
+; audio_interface:audioout|i2c_counter[9] ; 0.349 ; 0.000         ;
+; CS                                      ; 0.869 ; 0.000         ;
+; reset                                   ; 1.198 ; 0.000         ;
++-----------------------------------------+-------+---------------+
 
 
 +------------------------------------------------------------------+
@@ -627,17 +633,25 @@ No synchronizer chains to report.
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; audio_interface:audioout|i2c_counter[9] ; -1.821 ; -7.202        ;
+; CS                                      ; -4.753 ; -84.609       ;
+; clk                                     ; -2.915 ; -434.051      ;
+; audio_interface:audioout|i2c_counter[9] ; -1.861 ; -7.437        ;
+; BIT_CLK                                 ; -1.412 ; -76.260       ;
+; SCLK                                    ; -1.262 ; -10.067       ;
 +-----------------------------------------+--------+---------------+
 
 
-+-----------------------------------------------------------------+
-; Fast 1100mV 85C Model Removal Summary                           ;
-+-----------------------------------------+-------+---------------+
-; Clock                                   ; Slack ; End Point TNS ;
-+-----------------------------------------+-------+---------------+
-; audio_interface:audioout|i2c_counter[9] ; 1.477 ; 0.000         ;
-+-----------------------------------------+-------+---------------+
++------------------------------------------------------------------+
+; Fast 1100mV 85C Model Removal Summary                            ;
++-----------------------------------------+--------+---------------+
+; Clock                                   ; Slack  ; End Point TNS ;
++-----------------------------------------+--------+---------------+
+; BIT_CLK                                 ; -2.649 ; -142.340      ;
+; SCLK                                    ; -2.460 ; -19.641       ;
+; clk                                     ; 0.557  ; 0.000         ;
+; CS                                      ; 1.083  ; 0.000         ;
+; audio_interface:audioout|i2c_counter[9] ; 1.318  ; 0.000         ;
++-----------------------------------------+--------+---------------+
 
 
 +------------------------------------------------------------------+
@@ -645,12 +659,12 @@ No synchronizer chains to report.
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; clk                                     ; -0.392 ; -8.846        ;
-; BIT_CLK                                 ; -0.280 ; -15.274       ;
-; SCLK                                    ; -0.263 ; -2.126        ;
-; CS                                      ; -0.030 ; -0.068        ;
-; audio_interface:audioout|i2c_counter[9] ; -0.004 ; -0.004        ;
-; clk_gen:clockgen|s_bit_clk              ; 0.062  ; 0.000         ;
+; clk                                     ; -1.702 ; -64.723       ;
+; BIT_CLK                                 ; -1.702 ; -64.670       ;
+; SCLK                                    ; -0.258 ; -2.075        ;
+; reset                                   ; -0.119 ; -1.010        ;
+; CS                                      ; -0.110 ; -2.688        ;
+; audio_interface:audioout|i2c_counter[9] ; 0.115  ; 0.000         ;
 +-----------------------------------------+--------+---------------+
 
 
@@ -659,12 +673,14 @@ No synchronizer chains to report.
 +-------------+------------+--------+-------+------------+-----------------+
 ; Data Port   ; Clock Port ; Rise   ; Fall  ; Clock Edge ; Clock Reference ;
 +-------------+------------+--------+-------+------------+-----------------+
-; DIN         ; BIT_CLK    ; 0.090  ; 0.722 ; Rise       ; BIT_CLK         ;
-; LR_CLK      ; BIT_CLK    ; -0.391 ; 0.154 ; Rise       ; BIT_CLK         ;
-; CS          ; SCLK       ; 3.843  ; 6.005 ; Rise       ; SCLK            ;
-; SDATA       ; SCLK       ; 0.005  ; 0.667 ; Rise       ; SCLK            ;
-; AUD_BCLK    ; clk        ; 1.502  ; 2.451 ; Rise       ; clk             ;
-; AUD_DACLRCK ; clk        ; 1.606  ; 2.684 ; Rise       ; clk             ;
+; DIN         ; BIT_CLK    ; 0.387  ; 1.174 ; Rise       ; BIT_CLK         ;
+; LR_CLK      ; BIT_CLK    ; -0.476 ; 0.075 ; Rise       ; BIT_CLK         ;
+; CS          ; SCLK       ; 3.783  ; 6.076 ; Rise       ; SCLK            ;
+; SDATA       ; SCLK       ; 0.699  ; 1.654 ; Rise       ; SCLK            ;
+; AUD_BCLK    ; clk        ; 1.245  ; 2.093 ; Rise       ; clk             ;
+; AUD_DACLRCK ; clk        ; 1.480  ; 2.587 ; Rise       ; clk             ;
+; reset       ; clk        ; 1.844  ; 2.467 ; Rise       ; clk             ;
+; switch      ; clk        ; 1.761  ; 3.002 ; Rise       ; clk             ;
 +-------------+------------+--------+-------+------------+-----------------+
 
 
@@ -673,12 +689,14 @@ No synchronizer chains to report.
 +-------------+------------+--------+--------+------------+-----------------+
 ; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-------------+------------+--------+--------+------------+-----------------+
-; DIN         ; BIT_CLK    ; 3.161  ; 2.634  ; Rise       ; BIT_CLK         ;
-; LR_CLK      ; BIT_CLK    ; 3.516  ; 2.923  ; Rise       ; BIT_CLK         ;
-; CS          ; SCLK       ; -0.211 ; -1.841 ; Rise       ; SCLK            ;
-; SDATA       ; SCLK       ; 3.191  ; 2.621  ; Rise       ; SCLK            ;
-; AUD_BCLK    ; clk        ; -0.852 ; -1.737 ; Rise       ; clk             ;
-; AUD_DACLRCK ; clk        ; -0.931 ; -1.875 ; Rise       ; clk             ;
+; DIN         ; BIT_CLK    ; 2.903  ; 2.270  ; Rise       ; BIT_CLK         ;
+; LR_CLK      ; BIT_CLK    ; 3.587  ; 2.964  ; Rise       ; BIT_CLK         ;
+; CS          ; SCLK       ; -0.196 ; -1.973 ; Rise       ; SCLK            ;
+; SDATA       ; SCLK       ; 2.608  ; 1.853  ; Rise       ; SCLK            ;
+; AUD_BCLK    ; clk        ; -0.630 ; -1.428 ; Rise       ; clk             ;
+; AUD_DACLRCK ; clk        ; -0.780 ; -1.750 ; Rise       ; clk             ;
+; reset       ; clk        ; -0.242 ; -0.766 ; Rise       ; clk             ;
+; switch      ; clk        ; 0.018  ; -0.656 ; Rise       ; clk             ;
 +-------------+------------+--------+--------+------------+-----------------+
 
 
@@ -687,34 +705,30 @@ No synchronizer chains to report.
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 ; Data Port   ; Clock Port                              ; Rise   ; Fall   ; Clock Edge ; Clock Reference                         ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
-; dig0[*]     ; CS                                      ; 7.056  ; 7.934  ; Fall       ; CS                                      ;
-;  dig0[0]    ; CS                                      ; 6.657  ; 7.300  ; Fall       ; CS                                      ;
-;  dig0[1]    ; CS                                      ; 6.385  ; 6.821  ; Fall       ; CS                                      ;
-;  dig0[2]    ; CS                                      ; 6.887  ; 7.588  ; Fall       ; CS                                      ;
-;  dig0[3]    ; CS                                      ; 6.029  ; 6.308  ; Fall       ; CS                                      ;
-;  dig0[4]    ; CS                                      ; 7.056  ; 7.934  ; Fall       ; CS                                      ;
-;  dig0[5]    ; CS                                      ; 6.510  ; 7.054  ; Fall       ; CS                                      ;
-;  dig0[6]    ; CS                                      ; 6.632  ; 7.373  ; Fall       ; CS                                      ;
-; dig1[*]     ; CS                                      ; 7.208  ; 8.156  ; Fall       ; CS                                      ;
-;  dig1[0]    ; CS                                      ; 6.793  ; 7.570  ; Fall       ; CS                                      ;
-;  dig1[1]    ; CS                                      ; 6.457  ; 6.984  ; Fall       ; CS                                      ;
-;  dig1[2]    ; CS                                      ; 7.208  ; 8.156  ; Fall       ; CS                                      ;
-;  dig1[3]    ; CS                                      ; 6.587  ; 7.067  ; Fall       ; CS                                      ;
-;  dig1[4]    ; CS                                      ; 6.765  ; 7.408  ; Fall       ; CS                                      ;
-;  dig1[5]    ; CS                                      ; 6.871  ; 7.461  ; Fall       ; CS                                      ;
-;  dig1[6]    ; CS                                      ; 6.482  ; 6.865  ; Fall       ; CS                                      ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 6.029  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 7.393  ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 9.824  ; 11.740 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; AUD_DACDAT  ; clk                                     ; 10.734 ; 12.744 ; Rise       ; clk                                     ;
-; AUD_MCLK    ; clk                                     ; 6.417  ; 7.050  ; Rise       ; clk                                     ;
-; I2C_SCLK    ; clk                                     ; 8.210  ; 9.537  ; Rise       ; clk                                     ;
-; I2C_SDAT    ; clk                                     ; 10.498 ; 12.128 ; Rise       ; clk                                     ;
-; LR_CLK_OUT  ; clk                                     ; 6.271  ; 6.007  ; Rise       ; clk                                     ;
-; init_finish ; clk                                     ; 5.723  ; 6.042  ; Rise       ; clk                                     ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ; 5.811  ;        ; Rise       ; clk_gen:clockgen|s_bit_clk              ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ;        ; 6.723  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
-; DOUT        ; clk_gen:clockgen|s_bit_clk              ; 4.604  ; 4.836  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
+; dig0[*]     ; CS                                      ; 7.487  ; 8.148  ; Fall       ; CS                                      ;
+;  dig0[0]    ; CS                                      ; 7.239  ; 7.735  ; Fall       ; CS                                      ;
+;  dig0[1]    ; CS                                      ; 7.487  ; 8.148  ; Fall       ; CS                                      ;
+;  dig0[2]    ; CS                                      ; 7.419  ; 8.034  ; Fall       ; CS                                      ;
+;  dig0[3]    ; CS                                      ; 6.835  ; 7.137  ; Fall       ; CS                                      ;
+;  dig0[4]    ; CS                                      ; 7.477  ; 8.106  ; Fall       ; CS                                      ;
+;  dig0[5]    ; CS                                      ; 7.351  ; 7.915  ; Fall       ; CS                                      ;
+;  dig0[6]    ; CS                                      ; 6.848  ; 7.208  ; Fall       ; CS                                      ;
+; dig1[*]     ; CS                                      ; 7.410  ; 8.079  ; Fall       ; CS                                      ;
+;  dig1[0]    ; CS                                      ; 6.966  ; 7.396  ; Fall       ; CS                                      ;
+;  dig1[1]    ; CS                                      ; 7.074  ; 7.512  ; Fall       ; CS                                      ;
+;  dig1[2]    ; CS                                      ; 7.410  ; 8.079  ; Fall       ; CS                                      ;
+;  dig1[3]    ; CS                                      ; 7.377  ; 7.984  ; Fall       ; CS                                      ;
+;  dig1[4]    ; CS                                      ; 7.198  ; 7.753  ; Fall       ; CS                                      ;
+;  dig1[5]    ; CS                                      ; 7.229  ; 7.808  ; Fall       ; CS                                      ;
+;  dig1[6]    ; CS                                      ; 7.131  ; 7.632  ; Fall       ; CS                                      ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 5.727  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 7.255  ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 10.451 ; 12.289 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; AUD_DACDAT  ; clk                                     ; 9.853  ; 11.898 ; Rise       ; clk                                     ;
+; AUD_MCLK    ; clk                                     ; 8.848  ; 10.809 ; Rise       ; clk                                     ;
+; I2C_SCLK    ; clk                                     ; 7.819  ; 9.338  ; Rise       ; clk                                     ;
+; I2C_SDAT    ; clk                                     ; 9.978  ; 12.030 ; Rise       ; clk                                     ;
+; init_finish ; clk                                     ; 5.669  ; 5.963  ; Rise       ; clk                                     ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 
 
@@ -723,34 +737,30 @@ No synchronizer chains to report.
 +-------------+-----------------------------------------+-------+-------+------------+-----------------------------------------+
 ; Data Port   ; Clock Port                              ; Rise  ; Fall  ; Clock Edge ; Clock Reference                         ;
 +-------------+-----------------------------------------+-------+-------+------------+-----------------------------------------+
-; dig0[*]     ; CS                                      ; 4.927 ; 5.183 ; Fall       ; CS                                      ;
-;  dig0[0]    ; CS                                      ; 5.423 ; 5.891 ; Fall       ; CS                                      ;
-;  dig0[1]    ; CS                                      ; 5.219 ; 5.570 ; Fall       ; CS                                      ;
-;  dig0[2]    ; CS                                      ; 5.628 ; 6.148 ; Fall       ; CS                                      ;
-;  dig0[3]    ; CS                                      ; 4.927 ; 5.183 ; Fall       ; CS                                      ;
-;  dig0[4]    ; CS                                      ; 5.782 ; 6.405 ; Fall       ; CS                                      ;
-;  dig0[5]    ; CS                                      ; 5.342 ; 5.783 ; Fall       ; CS                                      ;
-;  dig0[6]    ; CS                                      ; 5.366 ; 5.861 ; Fall       ; CS                                      ;
-; dig1[*]     ; CS                                      ; 5.249 ; 5.592 ; Fall       ; CS                                      ;
-;  dig1[0]    ; CS                                      ; 5.527 ; 6.067 ; Fall       ; CS                                      ;
-;  dig1[1]    ; CS                                      ; 5.249 ; 5.624 ; Fall       ; CS                                      ;
-;  dig1[2]    ; CS                                      ; 5.910 ; 6.603 ; Fall       ; CS                                      ;
-;  dig1[3]    ; CS                                      ; 5.388 ; 5.750 ; Fall       ; CS                                      ;
-;  dig1[4]    ; CS                                      ; 5.553 ; 6.063 ; Fall       ; CS                                      ;
-;  dig1[5]    ; CS                                      ; 5.596 ; 6.073 ; Fall       ; CS                                      ;
-;  dig1[6]    ; CS                                      ; 5.265 ; 5.592 ; Fall       ; CS                                      ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 5.513 ;       ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;       ; 6.617 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 7.117 ; 8.825 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; AUD_DACDAT  ; clk                                     ; 7.898 ; 9.563 ; Rise       ; clk                                     ;
-; AUD_MCLK    ; clk                                     ; 5.915 ; 6.482 ; Rise       ; clk                                     ;
-; I2C_SCLK    ; clk                                     ; 7.196 ; 8.174 ; Rise       ; clk                                     ;
-; I2C_SDAT    ; clk                                     ; 8.032 ; 9.706 ; Rise       ; clk                                     ;
-; LR_CLK_OUT  ; clk                                     ; 5.265 ; 5.027 ; Rise       ; clk                                     ;
-; init_finish ; clk                                     ; 4.746 ; 5.006 ; Rise       ; clk                                     ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ; 4.839 ;       ; Rise       ; clk_gen:clockgen|s_bit_clk              ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ;       ; 5.516 ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
-; DOUT        ; clk_gen:clockgen|s_bit_clk              ; 3.617 ; 3.827 ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
+; dig0[*]     ; CS                                      ; 5.634 ; 5.877 ; Fall       ; CS                                      ;
+;  dig0[0]    ; CS                                      ; 6.001 ; 6.405 ; Fall       ; CS                                      ;
+;  dig0[1]    ; CS                                      ; 6.214 ; 6.745 ; Fall       ; CS                                      ;
+;  dig0[2]    ; CS                                      ; 6.134 ; 6.610 ; Fall       ; CS                                      ;
+;  dig0[3]    ; CS                                      ; 5.634 ; 5.877 ; Fall       ; CS                                      ;
+;  dig0[4]    ; CS                                      ; 6.206 ; 6.696 ; Fall       ; CS                                      ;
+;  dig0[5]    ; CS                                      ; 6.052 ; 6.486 ; Fall       ; CS                                      ;
+;  dig0[6]    ; CS                                      ; 5.654 ; 5.954 ; Fall       ; CS                                      ;
+; dig1[*]     ; CS                                      ; 5.769 ; 6.103 ; Fall       ; CS                                      ;
+;  dig1[0]    ; CS                                      ; 5.769 ; 6.103 ; Fall       ; CS                                      ;
+;  dig1[1]    ; CS                                      ; 5.856 ; 6.194 ; Fall       ; CS                                      ;
+;  dig1[2]    ; CS                                      ; 6.164 ; 6.703 ; Fall       ; CS                                      ;
+;  dig1[3]    ; CS                                      ; 6.157 ; 6.677 ; Fall       ; CS                                      ;
+;  dig1[4]    ; CS                                      ; 5.913 ; 6.366 ; Fall       ; CS                                      ;
+;  dig1[5]    ; CS                                      ; 6.026 ; 6.532 ; Fall       ; CS                                      ;
+;  dig1[6]    ; CS                                      ; 5.914 ; 6.307 ; Fall       ; CS                                      ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 5.230 ;       ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;       ; 6.431 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 6.844 ; 8.459 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; AUD_DACDAT  ; clk                                     ; 7.982 ; 9.696 ; Rise       ; clk                                     ;
+; AUD_MCLK    ; clk                                     ; 8.154 ; 9.936 ; Rise       ; clk                                     ;
+; I2C_SCLK    ; clk                                     ; 7.021 ; 8.212 ; Rise       ; clk                                     ;
+; I2C_SDAT    ; clk                                     ; 8.159 ; 9.849 ; Rise       ; clk                                     ;
+; init_finish ; clk                                     ; 4.706 ; 4.955 ; Rise       ; clk                                     ;
 +-------------+-----------------------------------------+-------+-------+------------+-----------------------------------------+
 
 
@@ -759,7 +769,7 @@ No synchronizer chains to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 8.990 ; 9.078 ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 9.566 ; 9.654 ; Rise       ; clk             ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -768,7 +778,7 @@ No synchronizer chains to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 8.171 ; 8.258 ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 8.512 ; 8.599 ; Rise       ; clk             ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -777,7 +787,7 @@ No synchronizer chains to report.
 +-----------+------------+-----------+-----------+------------+-----------------+
 ; Data Port ; Clock Port ; 0 to Hi-Z ; 1 to Hi-Z ; Clock Edge ; Clock Reference ;
 +-----------+------------+-----------+-----------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 10.772    ; 10.684    ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 11.288    ; 11.200    ; Rise       ; clk             ;
 +-----------+------------+-----------+-----------+------------+-----------------+
 
 
@@ -786,7 +796,7 @@ No synchronizer chains to report.
 +-----------+------------+-----------+-----------+------------+-----------------+
 ; Data Port ; Clock Port ; 0 to Hi-Z ; 1 to Hi-Z ; Clock Edge ; Clock Reference ;
 +-----------+------------+-----------+-----------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 9.744     ; 9.657     ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 10.168    ; 10.081    ; Rise       ; clk             ;
 +-----------+------------+-----------+-----------+------------+-----------------+
 
 
@@ -801,12 +811,12 @@ No synchronizer chains to report.
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; clk_gen:clockgen|s_bit_clk              ; -6.351 ; -16.878       ;
-; SCLK                                    ; -4.879 ; -39.008       ;
-; CS                                      ; -4.094 ; -55.278       ;
-; clk                                     ; -3.505 ; -134.510      ;
-; audio_interface:audioout|i2c_counter[9] ; -1.727 ; -6.069        ;
-; BIT_CLK                                 ; -0.421 ; -3.277        ;
+; CS                                      ; -5.129 ; -93.285       ;
+; clk                                     ; -4.924 ; -248.257      ;
+; SCLK                                    ; -4.911 ; -39.264       ;
+; reset                                   ; -2.412 ; -15.718       ;
+; audio_interface:audioout|i2c_counter[9] ; -2.103 ; -7.311        ;
+; BIT_CLK                                 ; -0.005 ; -0.005        ;
 +-----------------------------------------+--------+---------------+
 
 
@@ -815,12 +825,12 @@ No synchronizer chains to report.
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; clk                                     ; -2.033 ; -3.369        ;
-; SCLK                                    ; -0.379 ; -2.994        ;
-; BIT_CLK                                 ; 0.115  ; 0.000         ;
-; clk_gen:clockgen|s_bit_clk              ; 0.227  ; 0.000         ;
-; audio_interface:audioout|i2c_counter[9] ; 0.267  ; 0.000         ;
-; CS                                      ; 0.776  ; 0.000         ;
+; SCLK                                    ; -0.376 ; -2.989        ;
+; clk                                     ; -0.131 ; -0.403        ;
+; BIT_CLK                                 ; 0.070  ; 0.000         ;
+; audio_interface:audioout|i2c_counter[9] ; 0.332  ; 0.000         ;
+; CS                                      ; 0.833  ; 0.000         ;
+; reset                                   ; 1.152  ; 0.000         ;
 +-----------------------------------------+--------+---------------+
 
 
@@ -829,17 +839,25 @@ No synchronizer chains to report.
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; audio_interface:audioout|i2c_counter[9] ; -1.799 ; -7.112        ;
+; CS                                      ; -4.027 ; -71.179       ;
+; clk                                     ; -2.826 ; -420.288      ;
+; audio_interface:audioout|i2c_counter[9] ; -1.810 ; -7.236        ;
+; BIT_CLK                                 ; -1.393 ; -75.414       ;
+; SCLK                                    ; -1.233 ; -9.835        ;
 +-----------------------------------------+--------+---------------+
 
 
-+-----------------------------------------------------------------+
-; Fast 1100mV 0C Model Removal Summary                            ;
-+-----------------------------------------+-------+---------------+
-; Clock                                   ; Slack ; End Point TNS ;
-+-----------------------------------------+-------+---------------+
-; audio_interface:audioout|i2c_counter[9] ; 1.522 ; 0.000         ;
-+-----------------------------------------+-------+---------------+
++------------------------------------------------------------------+
+; Fast 1100mV 0C Model Removal Summary                             ;
++-----------------------------------------+--------+---------------+
+; Clock                                   ; Slack  ; End Point TNS ;
++-----------------------------------------+--------+---------------+
+; BIT_CLK                                 ; -2.634 ; -141.352      ;
+; SCLK                                    ; -2.453 ; -19.589       ;
+; clk                                     ; 0.484  ; 0.000         ;
+; CS                                      ; 0.750  ; 0.000         ;
+; audio_interface:audioout|i2c_counter[9] ; 1.317  ; 0.000         ;
++-----------------------------------------+--------+---------------+
 
 
 +------------------------------------------------------------------+
@@ -847,12 +865,12 @@ No synchronizer chains to report.
 +-----------------------------------------+--------+---------------+
 ; Clock                                   ; Slack  ; End Point TNS ;
 +-----------------------------------------+--------+---------------+
-; clk                                     ; -0.382 ; -8.819        ;
-; BIT_CLK                                 ; -0.264 ; -14.414       ;
-; SCLK                                    ; -0.249 ; -2.018        ;
-; CS                                      ; -0.024 ; -0.053        ;
-; audio_interface:audioout|i2c_counter[9] ; 0.019  ; 0.000         ;
-; clk_gen:clockgen|s_bit_clk              ; 0.060  ; 0.000         ;
+; clk                                     ; -1.702 ; -64.930       ;
+; BIT_CLK                                 ; -1.702 ; -64.296       ;
+; SCLK                                    ; -0.247 ; -1.987        ;
+; CS                                      ; -0.109 ; -2.979        ;
+; reset                                   ; -0.097 ; -0.783        ;
+; audio_interface:audioout|i2c_counter[9] ; 0.128  ; 0.000         ;
 +-----------------------------------------+--------+---------------+
 
 
@@ -861,12 +879,14 @@ No synchronizer chains to report.
 +-------------+------------+--------+-------+------------+-----------------+
 ; Data Port   ; Clock Port ; Rise   ; Fall  ; Clock Edge ; Clock Reference ;
 +-------------+------------+--------+-------+------------+-----------------+
-; DIN         ; BIT_CLK    ; 0.095  ; 0.700 ; Rise       ; BIT_CLK         ;
-; LR_CLK      ; BIT_CLK    ; -0.460 ; 0.070 ; Rise       ; BIT_CLK         ;
-; CS          ; SCLK       ; 3.327  ; 5.219 ; Rise       ; SCLK            ;
-; SDATA       ; SCLK       ; 0.010  ; 0.626 ; Rise       ; SCLK            ;
-; AUD_BCLK    ; clk        ; 1.151  ; 2.094 ; Rise       ; clk             ;
-; AUD_DACLRCK ; clk        ; 1.277  ; 2.286 ; Rise       ; clk             ;
+; DIN         ; BIT_CLK    ; 0.365  ; 1.089 ; Rise       ; BIT_CLK         ;
+; LR_CLK      ; BIT_CLK    ; -0.551 ; 0.015 ; Rise       ; BIT_CLK         ;
+; CS          ; SCLK       ; 3.296  ; 5.251 ; Rise       ; SCLK            ;
+; SDATA       ; SCLK       ; 0.623  ; 1.479 ; Rise       ; SCLK            ;
+; AUD_BCLK    ; clk        ; 0.930  ; 1.773 ; Rise       ; clk             ;
+; AUD_DACLRCK ; clk        ; 1.187  ; 2.207 ; Rise       ; clk             ;
+; reset       ; clk        ; 1.640  ; 2.239 ; Rise       ; clk             ;
+; switch      ; clk        ; 1.573  ; 2.655 ; Rise       ; clk             ;
 +-------------+------------+--------+-------+------------+-----------------+
 
 
@@ -875,12 +895,14 @@ No synchronizer chains to report.
 +-------------+------------+--------+--------+------------+-----------------+
 ; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-------------+------------+--------+--------+------------+-----------------+
-; DIN         ; BIT_CLK    ; 3.129  ; 2.610  ; Rise       ; BIT_CLK         ;
-; LR_CLK      ; BIT_CLK    ; 3.483  ; 2.901  ; Rise       ; BIT_CLK         ;
-; CS          ; SCLK       ; 0.219  ; -1.255 ; Rise       ; SCLK            ;
-; SDATA       ; SCLK       ; 3.160  ; 2.617  ; Rise       ; SCLK            ;
-; AUD_BCLK    ; clk        ; -0.541 ; -1.387 ; Rise       ; clk             ;
-; AUD_DACLRCK ; clk        ; -0.643 ; -1.515 ; Rise       ; clk             ;
+; DIN         ; BIT_CLK    ; 2.894  ; 2.297  ; Rise       ; BIT_CLK         ;
+; LR_CLK      ; BIT_CLK    ; 3.558  ; 2.932  ; Rise       ; BIT_CLK         ;
+; CS          ; SCLK       ; 0.216  ; -1.351 ; Rise       ; SCLK            ;
+; SDATA       ; SCLK       ; 2.647  ; 1.949  ; Rise       ; SCLK            ;
+; AUD_BCLK    ; clk        ; -0.348 ; -1.109 ; Rise       ; clk             ;
+; AUD_DACLRCK ; clk        ; -0.524 ; -1.398 ; Rise       ; clk             ;
+; reset       ; clk        ; -0.150 ; -0.669 ; Rise       ; clk             ;
+; switch      ; clk        ; 0.080  ; -0.543 ; Rise       ; clk             ;
 +-------------+------------+--------+--------+------------+-----------------+
 
 
@@ -889,34 +911,30 @@ No synchronizer chains to report.
 +-------------+-----------------------------------------+-------+--------+------------+-----------------------------------------+
 ; Data Port   ; Clock Port                              ; Rise  ; Fall   ; Clock Edge ; Clock Reference                         ;
 +-------------+-----------------------------------------+-------+--------+------------+-----------------------------------------+
-; dig0[*]     ; CS                                      ; 6.660 ; 7.331  ; Fall       ; CS                                      ;
-;  dig0[0]    ; CS                                      ; 6.297 ; 6.797  ; Fall       ; CS                                      ;
-;  dig0[1]    ; CS                                      ; 6.021 ; 6.381  ; Fall       ; CS                                      ;
-;  dig0[2]    ; CS                                      ; 6.506 ; 7.047  ; Fall       ; CS                                      ;
-;  dig0[3]    ; CS                                      ; 5.727 ; 5.953  ; Fall       ; CS                                      ;
-;  dig0[4]    ; CS                                      ; 6.660 ; 7.331  ; Fall       ; CS                                      ;
-;  dig0[5]    ; CS                                      ; 6.164 ; 6.595  ; Fall       ; CS                                      ;
-;  dig0[6]    ; CS                                      ; 6.278 ; 6.838  ; Fall       ; CS                                      ;
-; dig1[*]     ; CS                                      ; 6.804 ; 7.526  ; Fall       ; CS                                      ;
-;  dig1[0]    ; CS                                      ; 6.439 ; 7.025  ; Fall       ; CS                                      ;
-;  dig1[1]    ; CS                                      ; 6.111 ; 6.516  ; Fall       ; CS                                      ;
-;  dig1[2]    ; CS                                      ; 6.804 ; 7.526  ; Fall       ; CS                                      ;
-;  dig1[3]    ; CS                                      ; 6.191 ; 6.576  ; Fall       ; CS                                      ;
-;  dig1[4]    ; CS                                      ; 6.391 ; 6.890  ; Fall       ; CS                                      ;
-;  dig1[5]    ; CS                                      ; 6.484 ; 6.954  ; Fall       ; CS                                      ;
-;  dig1[6]    ; CS                                      ; 6.138 ; 6.447  ; Fall       ; CS                                      ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 5.318 ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;       ; 6.474  ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 8.843 ; 10.358 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; AUD_DACDAT  ; clk                                     ; 9.830 ; 11.432 ; Rise       ; clk                                     ;
-; AUD_MCLK    ; clk                                     ; 5.839 ; 6.417  ; Rise       ; clk                                     ;
-; I2C_SCLK    ; clk                                     ; 7.456 ; 8.589  ; Rise       ; clk                                     ;
-; I2C_SDAT    ; clk                                     ; 9.647 ; 10.905 ; Rise       ; clk                                     ;
-; LR_CLK_OUT  ; clk                                     ; 5.923 ; 5.670  ; Rise       ; clk                                     ;
-; init_finish ; clk                                     ; 5.442 ; 5.704  ; Rise       ; clk                                     ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ; 5.254 ;        ; Rise       ; clk_gen:clockgen|s_bit_clk              ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ;       ; 6.039  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
-; DOUT        ; clk_gen:clockgen|s_bit_clk              ; 4.242 ; 4.458  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
+; dig0[*]     ; CS                                      ; 7.033 ; 7.573  ; Fall       ; CS                                      ;
+;  dig0[0]    ; CS                                      ; 6.814 ; 7.221  ; Fall       ; CS                                      ;
+;  dig0[1]    ; CS                                      ; 7.033 ; 7.573  ; Fall       ; CS                                      ;
+;  dig0[2]    ; CS                                      ; 6.945 ; 7.450  ; Fall       ; CS                                      ;
+;  dig0[3]    ; CS                                      ; 6.429 ; 6.686  ; Fall       ; CS                                      ;
+;  dig0[4]    ; CS                                      ; 6.994 ; 7.502  ; Fall       ; CS                                      ;
+;  dig0[5]    ; CS                                      ; 6.897 ; 7.361  ; Fall       ; CS                                      ;
+;  dig0[6]    ; CS                                      ; 6.436 ; 6.741  ; Fall       ; CS                                      ;
+; dig1[*]     ; CS                                      ; 6.956 ; 7.497  ; Fall       ; CS                                      ;
+;  dig1[0]    ; CS                                      ; 6.559 ; 6.909  ; Fall       ; CS                                      ;
+;  dig1[1]    ; CS                                      ; 6.641 ; 6.999  ; Fall       ; CS                                      ;
+;  dig1[2]    ; CS                                      ; 6.956 ; 7.497  ; Fall       ; CS                                      ;
+;  dig1[3]    ; CS                                      ; 6.916 ; 7.409  ; Fall       ; CS                                      ;
+;  dig1[4]    ; CS                                      ; 6.775 ; 7.230  ; Fall       ; CS                                      ;
+;  dig1[5]    ; CS                                      ; 6.777 ; 7.257  ; Fall       ; CS                                      ;
+;  dig1[6]    ; CS                                      ; 6.690 ; 7.096  ; Fall       ; CS                                      ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 5.104 ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;       ; 6.360  ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 9.360 ; 10.809 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; AUD_DACDAT  ; clk                                     ; 9.116 ; 10.732 ; Rise       ; clk                                     ;
+; AUD_MCLK    ; clk                                     ; 8.178 ; 9.707  ; Rise       ; clk                                     ;
+; I2C_SCLK    ; clk                                     ; 7.145 ; 8.395  ; Rise       ; clk                                     ;
+; I2C_SDAT    ; clk                                     ; 9.198 ; 10.820 ; Rise       ; clk                                     ;
+; init_finish ; clk                                     ; 5.391 ; 5.633  ; Rise       ; clk                                     ;
 +-------------+-----------------------------------------+-------+--------+------------+-----------------------------------------+
 
 
@@ -925,34 +943,30 @@ No synchronizer chains to report.
 +-------------+-----------------------------------------+-------+-------+------------+-----------------------------------------+
 ; Data Port   ; Clock Port                              ; Rise  ; Fall  ; Clock Edge ; Clock Reference                         ;
 +-------------+-----------------------------------------+-------+-------+------------+-----------------------------------------+
-; dig0[*]     ; CS                                      ; 4.644 ; 4.850 ; Fall       ; CS                                      ;
-;  dig0[0]    ; CS                                      ; 5.097 ; 5.458 ; Fall       ; CS                                      ;
-;  dig0[1]    ; CS                                      ; 4.883 ; 5.171 ; Fall       ; CS                                      ;
-;  dig0[2]    ; CS                                      ; 5.279 ; 5.681 ; Fall       ; CS                                      ;
-;  dig0[3]    ; CS                                      ; 4.644 ; 4.850 ; Fall       ; CS                                      ;
-;  dig0[4]    ; CS                                      ; 5.420 ; 5.889 ; Fall       ; CS                                      ;
-;  dig0[5]    ; CS                                      ; 5.020 ; 5.364 ; Fall       ; CS                                      ;
-;  dig0[6]    ; CS                                      ; 5.047 ; 5.416 ; Fall       ; CS                                      ;
-; dig1[*]     ; CS                                      ; 4.932 ; 5.197 ; Fall       ; CS                                      ;
-;  dig1[0]    ; CS                                      ; 5.207 ; 5.608 ; Fall       ; CS                                      ;
-;  dig1[1]    ; CS                                      ; 4.932 ; 5.217 ; Fall       ; CS                                      ;
-;  dig1[2]    ; CS                                      ; 5.544 ; 6.063 ; Fall       ; CS                                      ;
-;  dig1[3]    ; CS                                      ; 5.025 ; 5.310 ; Fall       ; CS                                      ;
-;  dig1[4]    ; CS                                      ; 5.211 ; 5.600 ; Fall       ; CS                                      ;
-;  dig1[5]    ; CS                                      ; 5.231 ; 5.604 ; Fall       ; CS                                      ;
-;  dig1[6]    ; CS                                      ; 4.936 ; 5.197 ; Fall       ; CS                                      ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 4.862 ;       ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;       ; 5.775 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 6.426 ; 7.743 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; AUD_DACDAT  ; clk                                     ; 7.282 ; 8.573 ; Rise       ; clk                                     ;
-; AUD_MCLK    ; clk                                     ; 5.376 ; 5.861 ; Rise       ; clk                                     ;
-; I2C_SCLK    ; clk                                     ; 6.522 ; 7.328 ; Rise       ; clk                                     ;
-; I2C_SDAT    ; clk                                     ; 7.404 ; 8.681 ; Rise       ; clk                                     ;
-; LR_CLK_OUT  ; clk                                     ; 4.935 ; 4.706 ; Rise       ; clk                                     ;
-; init_finish ; clk                                     ; 4.479 ; 4.697 ; Rise       ; clk                                     ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ; 4.328 ;       ; Rise       ; clk_gen:clockgen|s_bit_clk              ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ;       ; 4.913 ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
-; DOUT        ; clk_gen:clockgen|s_bit_clk              ; 3.302 ; 3.500 ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
+; dig0[*]     ; CS                                      ; 5.256 ; 5.463 ; Fall       ; CS                                      ;
+;  dig0[0]    ; CS                                      ; 5.606 ; 5.948 ; Fall       ; CS                                      ;
+;  dig0[1]    ; CS                                      ; 5.793 ; 6.227 ; Fall       ; CS                                      ;
+;  dig0[2]    ; CS                                      ; 5.696 ; 6.087 ; Fall       ; CS                                      ;
+;  dig0[3]    ; CS                                      ; 5.256 ; 5.463 ; Fall       ; CS                                      ;
+;  dig0[4]    ; CS                                      ; 5.759 ; 6.158 ; Fall       ; CS                                      ;
+;  dig0[5]    ; CS                                      ; 5.634 ; 6.002 ; Fall       ; CS                                      ;
+;  dig0[6]    ; CS                                      ; 5.270 ; 5.524 ; Fall       ; CS                                      ;
+; dig1[*]     ; CS                                      ; 5.390 ; 5.672 ; Fall       ; CS                                      ;
+;  dig1[0]    ; CS                                      ; 5.390 ; 5.672 ; Fall       ; CS                                      ;
+;  dig1[1]    ; CS                                      ; 5.456 ; 5.735 ; Fall       ; CS                                      ;
+;  dig1[2]    ; CS                                      ; 5.746 ; 6.176 ; Fall       ; CS                                      ;
+;  dig1[3]    ; CS                                      ; 5.728 ; 6.144 ; Fall       ; CS                                      ;
+;  dig1[4]    ; CS                                      ; 5.514 ; 5.878 ; Fall       ; CS                                      ;
+;  dig1[5]    ; CS                                      ; 5.605 ; 6.017 ; Fall       ; CS                                      ;
+;  dig1[6]    ; CS                                      ; 5.505 ; 5.834 ; Fall       ; CS                                      ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 4.659 ;       ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;       ; 5.616 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 6.208 ; 7.459 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; AUD_DACDAT  ; clk                                     ; 7.365 ; 8.677 ; Rise       ; clk                                     ;
+; AUD_MCLK    ; clk                                     ; 7.530 ; 8.883 ; Rise       ; clk                                     ;
+; I2C_SCLK    ; clk                                     ; 6.398 ; 7.348 ; Rise       ; clk                                     ;
+; I2C_SDAT    ; clk                                     ; 7.507 ; 8.829 ; Rise       ; clk                                     ;
+; init_finish ; clk                                     ; 4.441 ; 4.655 ; Rise       ; clk                                     ;
 +-------------+-----------------------------------------+-------+-------+------------+-----------------------------------------+
 
 
@@ -961,7 +975,7 @@ No synchronizer chains to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 8.342 ; 8.412 ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 8.845 ; 8.915 ; Rise       ; clk             ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -970,7 +984,7 @@ No synchronizer chains to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 7.578 ; 7.647 ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 7.876 ; 7.945 ; Rise       ; clk             ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -979,7 +993,7 @@ No synchronizer chains to report.
 +-----------+------------+-----------+-----------+------------+-----------------+
 ; Data Port ; Clock Port ; 0 to Hi-Z ; 1 to Hi-Z ; Clock Edge ; Clock Reference ;
 +-----------+------------+-----------+-----------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 9.756     ; 9.686     ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 10.222    ; 10.152    ; Rise       ; clk             ;
 +-----------+------------+-----------+-----------+------------+-----------------+
 
 
@@ -988,7 +1002,7 @@ No synchronizer chains to report.
 +-----------+------------+-----------+-----------+------------+-----------------+
 ; Data Port ; Clock Port ; 0 to Hi-Z ; 1 to Hi-Z ; Clock Edge ; Clock Reference ;
 +-----------+------------+-----------+-----------+------------+-----------------+
-; I2C_SDAT  ; clk        ; 8.799     ; 8.730     ; Rise       ; clk             ;
+; I2C_SDAT  ; clk        ; 9.168     ; 9.099     ; Rise       ; clk             ;
 +-----------+------------+-----------+-----------+------------+-----------------+
 
 
@@ -998,26 +1012,26 @@ No synchronizer chains to report.
 No synchronizer chains to report.
 
 
-+----------------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                                      ;
-+------------------------------------------+----------+---------+----------+---------+---------------------+
-; Clock                                    ; Setup    ; Hold    ; Recovery ; Removal ; Minimum Pulse Width ;
-+------------------------------------------+----------+---------+----------+---------+---------------------+
-; Worst-case Slack                         ; -12.079  ; -3.564  ; -3.568   ; 1.477   ; -0.410              ;
-;  BIT_CLK                                 ; -1.349   ; 0.115   ; N/A      ; N/A     ; -0.394              ;
-;  CS                                      ; -8.660   ; 0.776   ; N/A      ; N/A     ; -0.030              ;
-;  SCLK                                    ; -7.630   ; -1.127  ; N/A      ; N/A     ; -0.394              ;
-;  audio_interface:audioout|i2c_counter[9] ; -3.464   ; 0.267   ; -3.568   ; 1.477   ; -0.394              ;
-;  clk                                     ; -7.192   ; -3.564  ; N/A      ; N/A     ; -0.410              ;
-;  clk_gen:clockgen|s_bit_clk              ; -12.079  ; 0.227   ; N/A      ; N/A     ; -0.394              ;
-; Design-wide TNS                          ; -568.436 ; -15.357 ; -14.238  ; 0.0     ; -95.466             ;
-;  BIT_CLK                                 ; -33.502  ; 0.000   ; N/A      ; N/A     ; -32.435             ;
-;  CS                                      ; -118.325 ; 0.000   ; N/A      ; N/A     ; -0.068              ;
-;  SCLK                                    ; -61.024  ; -8.968  ; N/A      ; N/A     ; -4.581              ;
-;  audio_interface:audioout|i2c_counter[9] ; -12.527  ; 0.000   ; -14.238  ; 0.000   ; -2.603              ;
-;  clk                                     ; -311.526 ; -6.389  ; N/A      ; N/A     ; -55.668             ;
-;  clk_gen:clockgen|s_bit_clk              ; -32.391  ; 0.000   ; N/A      ; N/A     ; -3.363              ;
-+------------------------------------------+----------+---------+----------+---------+---------------------+
++-----------------------------------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                                                       ;
++------------------------------------------+----------+---------+----------+----------+---------------------+
+; Clock                                    ; Setup    ; Hold    ; Recovery ; Removal  ; Minimum Pulse Width ;
++------------------------------------------+----------+---------+----------+----------+---------------------+
+; Worst-case Slack                         ; -10.538  ; -1.202  ; -7.290   ; -4.870   ; -2.225              ;
+;  BIT_CLK                                 ; -0.807   ; 0.070   ; -2.286   ; -4.870   ; -2.225              ;
+;  CS                                      ; -10.538  ; 0.833   ; -7.290   ; 0.750    ; -0.110              ;
+;  SCLK                                    ; -7.580   ; -1.202  ; -1.969   ; -4.525   ; -0.394              ;
+;  audio_interface:audioout|i2c_counter[9] ; -4.157   ; 0.332   ; -3.648   ; 1.317    ; -0.394              ;
+;  clk                                     ; -7.874   ; -0.368  ; -4.985   ; 0.484    ; -2.225              ;
+;  reset                                   ; -4.255   ; 1.072   ; N/A      ; N/A      ; -0.119              ;
+; Design-wide TNS                          ; -813.544 ; -10.152 ; -1007.54 ; -298.174 ; -239.527            ;
+;  BIT_CLK                                 ; -9.138   ; 0.000   ; -121.569 ; -262.051 ; -89.801             ;
+;  CS                                      ; -194.417 ; 0.000   ; -130.220 ; 0.000    ; -2.979              ;
+;  SCLK                                    ; -60.592  ; -9.556  ; -15.684  ; -36.123  ; -4.528              ;
+;  audio_interface:audioout|i2c_counter[9] ; -14.598  ; 0.000   ; -14.585  ; 0.000    ; -2.706              ;
+;  clk                                     ; -506.856 ; -0.596  ; -725.560 ; 0.000    ; -144.042            ;
+;  reset                                   ; -28.024  ; 0.000   ; N/A      ; N/A      ; -1.010              ;
++------------------------------------------+----------+---------+----------+----------+---------------------+
 
 
 +--------------------------------------------------------------------------+
@@ -1025,12 +1039,14 @@ No synchronizer chains to report.
 +-------------+------------+--------+-------+------------+-----------------+
 ; Data Port   ; Clock Port ; Rise   ; Fall  ; Clock Edge ; Clock Reference ;
 +-------------+------------+--------+-------+------------+-----------------+
-; DIN         ; BIT_CLK    ; 0.095  ; 0.722 ; Rise       ; BIT_CLK         ;
-; LR_CLK      ; BIT_CLK    ; -0.391 ; 0.154 ; Rise       ; BIT_CLK         ;
-; CS          ; SCLK       ; 6.079  ; 7.970 ; Rise       ; SCLK            ;
-; SDATA       ; SCLK       ; 0.010  ; 0.667 ; Rise       ; SCLK            ;
-; AUD_BCLK    ; clk        ; 2.594  ; 3.338 ; Rise       ; clk             ;
-; AUD_DACLRCK ; clk        ; 2.679  ; 3.627 ; Rise       ; clk             ;
+; DIN         ; BIT_CLK    ; 0.468  ; 1.174 ; Rise       ; BIT_CLK         ;
+; LR_CLK      ; BIT_CLK    ; -0.476 ; 0.075 ; Rise       ; BIT_CLK         ;
+; CS          ; SCLK       ; 5.933  ; 7.920 ; Rise       ; SCLK            ;
+; SDATA       ; SCLK       ; 1.001  ; 1.728 ; Rise       ; SCLK            ;
+; AUD_BCLK    ; clk        ; 2.166  ; 2.816 ; Rise       ; clk             ;
+; AUD_DACLRCK ; clk        ; 2.385  ; 3.364 ; Rise       ; clk             ;
+; reset       ; clk        ; 3.345  ; 3.737 ; Rise       ; clk             ;
+; switch      ; clk        ; 2.814  ; 3.888 ; Rise       ; clk             ;
 +-------------+------------+--------+-------+------------+-----------------+
 
 
@@ -1039,12 +1055,14 @@ No synchronizer chains to report.
 +-------------+------------+--------+--------+------------+-----------------+
 ; Data Port   ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-------------+------------+--------+--------+------------+-----------------+
-; DIN         ; BIT_CLK    ; 5.984  ; 5.751  ; Rise       ; BIT_CLK         ;
-; LR_CLK      ; BIT_CLK    ; 6.604  ; 6.242  ; Rise       ; BIT_CLK         ;
-; CS          ; SCLK       ; 0.967  ; -0.417 ; Rise       ; SCLK            ;
-; SDATA       ; SCLK       ; 6.048  ; 5.740  ; Rise       ; SCLK            ;
-; AUD_BCLK    ; clk        ; -0.541 ; -1.387 ; Rise       ; clk             ;
-; AUD_DACLRCK ; clk        ; -0.643 ; -1.515 ; Rise       ; clk             ;
+; DIN         ; BIT_CLK    ; 5.633  ; 5.284  ; Rise       ; BIT_CLK         ;
+; LR_CLK      ; BIT_CLK    ; 6.648  ; 6.232  ; Rise       ; BIT_CLK         ;
+; CS          ; SCLK       ; 1.042  ; -0.450 ; Rise       ; SCLK            ;
+; SDATA       ; SCLK       ; 5.192  ; 4.712  ; Rise       ; SCLK            ;
+; AUD_BCLK    ; clk        ; -0.348 ; -1.109 ; Rise       ; clk             ;
+; AUD_DACLRCK ; clk        ; -0.524 ; -1.398 ; Rise       ; clk             ;
+; reset       ; clk        ; -0.150 ; -0.576 ; Rise       ; clk             ;
+; switch      ; clk        ; 0.315  ; -0.090 ; Rise       ; clk             ;
 +-------------+------------+--------+--------+------------+-----------------+
 
 
@@ -1053,34 +1071,30 @@ No synchronizer chains to report.
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 ; Data Port   ; Clock Port                              ; Rise   ; Fall   ; Clock Edge ; Clock Reference                         ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
-; dig0[*]     ; CS                                      ; 11.021 ; 11.938 ; Fall       ; CS                                      ;
-;  dig0[0]    ; CS                                      ; 10.580 ; 11.210 ; Fall       ; CS                                      ;
-;  dig0[1]    ; CS                                      ; 10.287 ; 10.659 ; Fall       ; CS                                      ;
-;  dig0[2]    ; CS                                      ; 10.887 ; 11.591 ; Fall       ; CS                                      ;
-;  dig0[3]    ; CS                                      ; 9.768  ; 9.932  ; Fall       ; CS                                      ;
-;  dig0[4]    ; CS                                      ; 11.021 ; 11.938 ; Fall       ; CS                                      ;
-;  dig0[5]    ; CS                                      ; 10.430 ; 10.928 ; Fall       ; CS                                      ;
-;  dig0[6]    ; CS                                      ; 10.346 ; 11.107 ; Fall       ; CS                                      ;
-; dig1[*]     ; CS                                      ; 11.280 ; 12.268 ; Fall       ; CS                                      ;
-;  dig1[0]    ; CS                                      ; 10.687 ; 11.498 ; Fall       ; CS                                      ;
-;  dig1[1]    ; CS                                      ; 10.094 ; 10.610 ; Fall       ; CS                                      ;
-;  dig1[2]    ; CS                                      ; 11.280 ; 12.268 ; Fall       ; CS                                      ;
-;  dig1[3]    ; CS                                      ; 10.476 ; 10.914 ; Fall       ; CS                                      ;
-;  dig1[4]    ; CS                                      ; 10.753 ; 11.350 ; Fall       ; CS                                      ;
-;  dig1[5]    ; CS                                      ; 10.900 ; 11.444 ; Fall       ; CS                                      ;
-;  dig1[6]    ; CS                                      ; 10.376 ; 10.678 ; Fall       ; CS                                      ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 9.595  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 11.073 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 15.325 ; 17.431 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; AUD_DACDAT  ; clk                                     ; 17.156 ; 19.206 ; Rise       ; clk                                     ;
-; AUD_MCLK    ; clk                                     ; 10.917 ; 11.503 ; Rise       ; clk                                     ;
-; I2C_SCLK    ; clk                                     ; 13.610 ; 15.002 ; Rise       ; clk                                     ;
-; I2C_SDAT    ; clk                                     ; 16.675 ; 18.392 ; Rise       ; clk                                     ;
-; LR_CLK_OUT  ; clk                                     ; 10.390 ; 10.282 ; Rise       ; clk                                     ;
-; init_finish ; clk                                     ; 9.735  ; 9.993  ; Rise       ; clk                                     ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ; 9.285  ;        ; Rise       ; clk_gen:clockgen|s_bit_clk              ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ;        ; 10.080 ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
-; DOUT        ; clk_gen:clockgen|s_bit_clk              ; 7.703  ; 7.797  ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
+; dig0[*]     ; CS                                      ; 12.019 ; 12.582 ; Fall       ; CS                                      ;
+;  dig0[0]    ; CS                                      ; 11.678 ; 12.047 ; Fall       ; CS                                      ;
+;  dig0[1]    ; CS                                      ; 12.019 ; 12.582 ; Fall       ; CS                                      ;
+;  dig0[2]    ; CS                                      ; 11.895 ; 12.448 ; Fall       ; CS                                      ;
+;  dig0[3]    ; CS                                      ; 10.970 ; 11.133 ; Fall       ; CS                                      ;
+;  dig0[4]    ; CS                                      ; 11.807 ; 12.373 ; Fall       ; CS                                      ;
+;  dig0[5]    ; CS                                      ; 11.782 ; 12.262 ; Fall       ; CS                                      ;
+;  dig0[6]    ; CS                                      ; 10.972 ; 11.216 ; Fall       ; CS                                      ;
+; dig1[*]     ; CS                                      ; 11.770 ; 12.375 ; Fall       ; CS                                      ;
+;  dig1[0]    ; CS                                      ; 11.152 ; 11.465 ; Fall       ; CS                                      ;
+;  dig1[1]    ; CS                                      ; 11.213 ; 11.563 ; Fall       ; CS                                      ;
+;  dig1[2]    ; CS                                      ; 11.770 ; 12.375 ; Fall       ; CS                                      ;
+;  dig1[3]    ; CS                                      ; 11.731 ; 12.247 ; Fall       ; CS                                      ;
+;  dig1[4]    ; CS                                      ; 11.634 ; 12.126 ; Fall       ; CS                                      ;
+;  dig1[5]    ; CS                                      ; 11.550 ; 12.044 ; Fall       ; CS                                      ;
+;  dig1[6]    ; CS                                      ; 11.335 ; 11.760 ; Fall       ; CS                                      ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 9.210  ;        ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;        ; 10.917 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 15.919 ; 17.834 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; AUD_DACDAT  ; clk                                     ; 15.808 ; 18.071 ; Rise       ; clk                                     ;
+; AUD_MCLK    ; clk                                     ; 13.928 ; 15.956 ; Rise       ; clk                                     ;
+; I2C_SCLK    ; clk                                     ; 12.982 ; 14.720 ; Rise       ; clk                                     ;
+; I2C_SDAT    ; clk                                     ; 16.136 ; 18.305 ; Rise       ; clk                                     ;
+; init_finish ; clk                                     ; 9.668  ; 9.895  ; Rise       ; clk                                     ;
 +-------------+-----------------------------------------+--------+--------+------------+-----------------------------------------+
 
 
@@ -1089,34 +1103,30 @@ No synchronizer chains to report.
 +-------------+-----------------------------------------+-------+-------+------------+-----------------------------------------+
 ; Data Port   ; Clock Port                              ; Rise  ; Fall  ; Clock Edge ; Clock Reference                         ;
 +-------------+-----------------------------------------+-------+-------+------------+-----------------------------------------+
-; dig0[*]     ; CS                                      ; 4.644 ; 4.850 ; Fall       ; CS                                      ;
-;  dig0[0]    ; CS                                      ; 5.097 ; 5.458 ; Fall       ; CS                                      ;
-;  dig0[1]    ; CS                                      ; 4.883 ; 5.171 ; Fall       ; CS                                      ;
-;  dig0[2]    ; CS                                      ; 5.279 ; 5.681 ; Fall       ; CS                                      ;
-;  dig0[3]    ; CS                                      ; 4.644 ; 4.850 ; Fall       ; CS                                      ;
-;  dig0[4]    ; CS                                      ; 5.420 ; 5.889 ; Fall       ; CS                                      ;
-;  dig0[5]    ; CS                                      ; 5.020 ; 5.364 ; Fall       ; CS                                      ;
-;  dig0[6]    ; CS                                      ; 5.047 ; 5.416 ; Fall       ; CS                                      ;
-; dig1[*]     ; CS                                      ; 4.932 ; 5.197 ; Fall       ; CS                                      ;
-;  dig1[0]    ; CS                                      ; 5.207 ; 5.608 ; Fall       ; CS                                      ;
-;  dig1[1]    ; CS                                      ; 4.932 ; 5.217 ; Fall       ; CS                                      ;
-;  dig1[2]    ; CS                                      ; 5.544 ; 6.063 ; Fall       ; CS                                      ;
-;  dig1[3]    ; CS                                      ; 5.025 ; 5.310 ; Fall       ; CS                                      ;
-;  dig1[4]    ; CS                                      ; 5.211 ; 5.600 ; Fall       ; CS                                      ;
-;  dig1[5]    ; CS                                      ; 5.231 ; 5.604 ; Fall       ; CS                                      ;
-;  dig1[6]    ; CS                                      ; 4.936 ; 5.197 ; Fall       ; CS                                      ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 4.862 ;       ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;       ; 5.775 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 6.426 ; 7.743 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
-; AUD_DACDAT  ; clk                                     ; 7.282 ; 8.573 ; Rise       ; clk                                     ;
-; AUD_MCLK    ; clk                                     ; 5.376 ; 5.861 ; Rise       ; clk                                     ;
-; I2C_SCLK    ; clk                                     ; 6.522 ; 7.328 ; Rise       ; clk                                     ;
-; I2C_SDAT    ; clk                                     ; 7.404 ; 8.681 ; Rise       ; clk                                     ;
-; LR_CLK_OUT  ; clk                                     ; 4.935 ; 4.706 ; Rise       ; clk                                     ;
-; init_finish ; clk                                     ; 4.479 ; 4.697 ; Rise       ; clk                                     ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ; 4.328 ;       ; Rise       ; clk_gen:clockgen|s_bit_clk              ;
-; BIT_CLK_OUT ; clk_gen:clockgen|s_bit_clk              ;       ; 4.913 ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
-; DOUT        ; clk_gen:clockgen|s_bit_clk              ; 3.302 ; 3.500 ; Fall       ; clk_gen:clockgen|s_bit_clk              ;
+; dig0[*]     ; CS                                      ; 5.256 ; 5.463 ; Fall       ; CS                                      ;
+;  dig0[0]    ; CS                                      ; 5.606 ; 5.948 ; Fall       ; CS                                      ;
+;  dig0[1]    ; CS                                      ; 5.793 ; 6.227 ; Fall       ; CS                                      ;
+;  dig0[2]    ; CS                                      ; 5.696 ; 6.087 ; Fall       ; CS                                      ;
+;  dig0[3]    ; CS                                      ; 5.256 ; 5.463 ; Fall       ; CS                                      ;
+;  dig0[4]    ; CS                                      ; 5.759 ; 6.158 ; Fall       ; CS                                      ;
+;  dig0[5]    ; CS                                      ; 5.634 ; 6.002 ; Fall       ; CS                                      ;
+;  dig0[6]    ; CS                                      ; 5.270 ; 5.524 ; Fall       ; CS                                      ;
+; dig1[*]     ; CS                                      ; 5.390 ; 5.672 ; Fall       ; CS                                      ;
+;  dig1[0]    ; CS                                      ; 5.390 ; 5.672 ; Fall       ; CS                                      ;
+;  dig1[1]    ; CS                                      ; 5.456 ; 5.735 ; Fall       ; CS                                      ;
+;  dig1[2]    ; CS                                      ; 5.746 ; 6.176 ; Fall       ; CS                                      ;
+;  dig1[3]    ; CS                                      ; 5.728 ; 6.144 ; Fall       ; CS                                      ;
+;  dig1[4]    ; CS                                      ; 5.514 ; 5.878 ; Fall       ; CS                                      ;
+;  dig1[5]    ; CS                                      ; 5.605 ; 6.017 ; Fall       ; CS                                      ;
+;  dig1[6]    ; CS                                      ; 5.505 ; 5.834 ; Fall       ; CS                                      ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ; 4.659 ;       ; Rise       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SCLK    ; audio_interface:audioout|i2c_counter[9] ;       ; 5.616 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; I2C_SDAT    ; audio_interface:audioout|i2c_counter[9] ; 6.208 ; 7.459 ; Fall       ; audio_interface:audioout|i2c_counter[9] ;
+; AUD_DACDAT  ; clk                                     ; 7.365 ; 8.677 ; Rise       ; clk                                     ;
+; AUD_MCLK    ; clk                                     ; 7.530 ; 8.883 ; Rise       ; clk                                     ;
+; I2C_SCLK    ; clk                                     ; 6.398 ; 7.348 ; Rise       ; clk                                     ;
+; I2C_SDAT    ; clk                                     ; 7.507 ; 8.829 ; Rise       ; clk                                     ;
+; init_finish ; clk                                     ; 4.441 ; 4.655 ; Rise       ; clk                                     ;
 +-------------+-----------------------------------------+-------+-------+------------+-----------------------------------------+
 
 
@@ -1125,9 +1135,6 @@ No synchronizer chains to report.
 +-------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
 ; Pin         ; I/O Standard ; Near Tline Length ; Near Tline L per Length ; Near Tline C per Length ; Near Series R ; Near Differential R ; Near Pull-up R ; Near Pull-down R ; Near C ; Far Tline Length ; Far Tline L per Length ; Far Tline C per Length ; Far Series R ; Far Pull-up R ; Far Pull-down R ; Far C ; Termination Voltage ; Far Differential R ; EBD File Name ; EBD Signal Name ; EBD Far-end ;
 +-------------+--------------+-------------------+-------------------------+-------------------------+---------------+---------------------+----------------+------------------+--------+------------------+------------------------+------------------------+--------------+---------------+-----------------+-------+---------------------+--------------------+---------------+-----------------+-------------+
-; LR_CLK_OUT  ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; BIT_CLK_OUT ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; DOUT        ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; dig0[0]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; dig0[1]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; dig0[2]     ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
@@ -1155,9 +1162,9 @@ No synchronizer chains to report.
 +-------------+--------------+-----------------+-----------------+
 ; Pin         ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
 +-------------+--------------+-----------------+-----------------+
-; clk         ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; reset       ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; CS          ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; reset       ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; clk         ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SDATA       ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SCLK        ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; AUD_DACLRCK ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -1165,6 +1172,7 @@ No synchronizer chains to report.
 ; BIT_CLK     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; LR_CLK      ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; DIN         ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; switch      ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 +-------------+--------------+-----------------+-----------------+
 
 
@@ -1173,9 +1181,6 @@ No synchronizer chains to report.
 +-------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 ; Pin         ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
 +-------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
-; LR_CLK_OUT  ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.6e-07 V                    ; 2.41 V              ; -0.0463 V           ; 0.201 V                              ; 0.131 V                              ; 4.61e-10 s                  ; 4.53e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.6e-07 V                   ; 2.41 V             ; -0.0463 V          ; 0.201 V                             ; 0.131 V                             ; 4.61e-10 s                 ; 4.53e-10 s                 ; No                        ; Yes                       ;
-; BIT_CLK_OUT ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.07e-07 V                   ; 2.36 V              ; -0.0231 V           ; 0.14 V                               ; 0.089 V                              ; 4.52e-10 s                  ; 4.35e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.07e-07 V                  ; 2.36 V             ; -0.0231 V          ; 0.14 V                              ; 0.089 V                             ; 4.52e-10 s                 ; 4.35e-10 s                 ; No                        ; Yes                       ;
-; DOUT        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.6e-07 V                    ; 2.41 V              ; -0.0463 V           ; 0.201 V                              ; 0.131 V                              ; 4.61e-10 s                  ; 4.53e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.6e-07 V                   ; 2.41 V             ; -0.0463 V          ; 0.201 V                             ; 0.131 V                             ; 4.61e-10 s                 ; 4.53e-10 s                 ; No                        ; Yes                       ;
 ; dig0[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.52e-07 V                   ; 2.42 V              ; -0.0568 V           ; 0.173 V                              ; 0.113 V                              ; 4.5e-10 s                   ; 4.35e-10 s                  ; No                         ; No                         ; 2.32 V                      ; 3.52e-07 V                  ; 2.42 V             ; -0.0568 V          ; 0.173 V                             ; 0.113 V                             ; 4.5e-10 s                  ; 4.35e-10 s                 ; No                        ; No                        ;
 ; dig0[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.52e-07 V                   ; 2.42 V              ; -0.0568 V           ; 0.173 V                              ; 0.113 V                              ; 4.5e-10 s                   ; 4.35e-10 s                  ; No                         ; No                         ; 2.32 V                      ; 3.52e-07 V                  ; 2.42 V             ; -0.0568 V          ; 0.173 V                             ; 0.113 V                             ; 4.5e-10 s                  ; 4.35e-10 s                 ; No                        ; No                        ;
 ; dig0[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.52e-07 V                   ; 2.42 V              ; -0.0557 V           ; 0.175 V                              ; 0.114 V                              ; 4.5e-10 s                   ; 4.35e-10 s                  ; No                         ; No                         ; 2.32 V                      ; 3.52e-07 V                  ; 2.42 V             ; -0.0557 V          ; 0.175 V                             ; 0.114 V                             ; 4.5e-10 s                  ; 4.35e-10 s                 ; No                        ; No                        ;
@@ -1203,9 +1208,6 @@ No synchronizer chains to report.
 +-------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 ; Pin         ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
 +-------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
-; LR_CLK_OUT  ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.96e-05 V                   ; 2.38 V              ; -0.0306 V           ; 0.23 V                               ; 0.206 V                              ; 4.83e-10 s                  ; 5.01e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.96e-05 V                  ; 2.38 V             ; -0.0306 V          ; 0.23 V                              ; 0.206 V                             ; 4.83e-10 s                 ; 5.01e-10 s                 ; No                        ; Yes                       ;
-; BIT_CLK_OUT ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.49e-05 V                   ; 2.34 V              ; -0.0118 V           ; 0.182 V                              ; 0.051 V                              ; 4.81e-10 s                  ; 4.83e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 3.49e-05 V                  ; 2.34 V             ; -0.0118 V          ; 0.182 V                             ; 0.051 V                             ; 4.81e-10 s                 ; 4.83e-10 s                 ; Yes                       ; Yes                       ;
-; DOUT        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.96e-05 V                   ; 2.38 V              ; -0.0306 V           ; 0.23 V                               ; 0.206 V                              ; 4.83e-10 s                  ; 5.01e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.96e-05 V                  ; 2.38 V             ; -0.0306 V          ; 0.23 V                              ; 0.206 V                             ; 4.83e-10 s                 ; 5.01e-10 s                 ; No                        ; Yes                       ;
 ; dig0[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.88e-05 V                   ; 2.39 V              ; -0.0374 V           ; 0.189 V                              ; 0.158 V                              ; 4.66e-10 s                  ; 4.67e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.88e-05 V                  ; 2.39 V             ; -0.0374 V          ; 0.189 V                             ; 0.158 V                             ; 4.66e-10 s                 ; 4.67e-10 s                 ; No                        ; Yes                       ;
 ; dig0[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.88e-05 V                   ; 2.39 V              ; -0.0374 V           ; 0.189 V                              ; 0.158 V                              ; 4.66e-10 s                  ; 4.67e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.88e-05 V                  ; 2.39 V             ; -0.0374 V          ; 0.189 V                             ; 0.158 V                             ; 4.66e-10 s                 ; 4.67e-10 s                 ; No                        ; Yes                       ;
 ; dig0[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.88e-05 V                   ; 2.39 V              ; -0.037 V            ; 0.188 V                              ; 0.158 V                              ; 4.67e-10 s                  ; 4.67e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.88e-05 V                  ; 2.39 V             ; -0.037 V           ; 0.188 V                             ; 0.158 V                             ; 4.67e-10 s                 ; 4.67e-10 s                 ; No                        ; Yes                       ;
@@ -1233,9 +1235,6 @@ No synchronizer chains to report.
 +-------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 ; Pin         ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
 +-------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
-; LR_CLK_OUT  ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.25e-06 V                   ; 2.9 V               ; -0.107 V            ; 0.378 V                              ; 0.16 V                               ; 2.87e-10 s                  ; 4.28e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 4.25e-06 V                  ; 2.9 V              ; -0.107 V           ; 0.378 V                             ; 0.16 V                              ; 2.87e-10 s                 ; 4.28e-10 s                 ; No                        ; No                        ;
-; BIT_CLK_OUT ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 3.54e-06 V                   ; 2.81 V              ; -0.0578 V           ; 0.303 V                              ; 0.28 V                               ; 2.93e-10 s                  ; 3.01e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 3.54e-06 V                  ; 2.81 V             ; -0.0578 V          ; 0.303 V                             ; 0.28 V                              ; 2.93e-10 s                 ; 3.01e-10 s                 ; No                        ; No                        ;
-; DOUT        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.25e-06 V                   ; 2.9 V               ; -0.107 V            ; 0.378 V                              ; 0.16 V                               ; 2.87e-10 s                  ; 4.28e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 4.25e-06 V                  ; 2.9 V              ; -0.107 V           ; 0.378 V                             ; 0.16 V                              ; 2.87e-10 s                 ; 4.28e-10 s                 ; No                        ; No                        ;
 ; dig0[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.14e-06 V                   ; 2.91 V              ; -0.119 V            ; 0.326 V                              ; 0.298 V                              ; 2.74e-10 s                  ; 2.8e-10 s                   ; No                         ; No                         ; 2.75 V                      ; 4.14e-06 V                  ; 2.91 V             ; -0.119 V           ; 0.326 V                             ; 0.298 V                             ; 2.74e-10 s                 ; 2.8e-10 s                  ; No                        ; No                        ;
 ; dig0[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.14e-06 V                   ; 2.91 V              ; -0.119 V            ; 0.326 V                              ; 0.298 V                              ; 2.74e-10 s                  ; 2.8e-10 s                   ; No                         ; No                         ; 2.75 V                      ; 4.14e-06 V                  ; 2.91 V             ; -0.119 V           ; 0.326 V                             ; 0.298 V                             ; 2.74e-10 s                 ; 2.8e-10 s                  ; No                        ; No                        ;
 ; dig0[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 4.14e-06 V                   ; 2.91 V              ; -0.121 V            ; 0.326 V                              ; 0.297 V                              ; 2.74e-10 s                  ; 2.8e-10 s                   ; No                         ; No                         ; 2.75 V                      ; 4.14e-06 V                  ; 2.91 V             ; -0.121 V           ; 0.326 V                             ; 0.297 V                             ; 2.74e-10 s                 ; 2.8e-10 s                  ; No                        ; No                        ;
@@ -1263,9 +1262,6 @@ No synchronizer chains to report.
 +-------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 ; Pin         ; I/O Standard ; Board Delay on Rise ; Board Delay on Fall ; Steady State Voh at FPGA Pin ; Steady State Vol at FPGA Pin ; Voh Max at FPGA Pin ; Vol Min at FPGA Pin ; Ringback Voltage on Rise at FPGA Pin ; Ringback Voltage on Fall at FPGA Pin ; 10-90 Rise Time at FPGA Pin ; 90-10 Fall Time at FPGA Pin ; Monotonic Rise at FPGA Pin ; Monotonic Fall at FPGA Pin ; Steady State Voh at Far-end ; Steady State Vol at Far-end ; Voh Max at Far-end ; Vol Min at Far-end ; Ringback Voltage on Rise at Far-end ; Ringback Voltage on Fall at Far-end ; 10-90 Rise Time at Far-end ; 90-10 Fall Time at Far-end ; Monotonic Rise at Far-end ; Monotonic Fall at Far-end ;
 +-------------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
-; LR_CLK_OUT  ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000247 V                   ; 2.85 V              ; -0.0711 V           ; 0.204 V                              ; 0.181 V                              ; 4.55e-10 s                  ; 4.49e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000247 V                  ; 2.85 V             ; -0.0711 V          ; 0.204 V                             ; 0.181 V                             ; 4.55e-10 s                 ; 4.49e-10 s                 ; No                        ; No                        ;
-; BIT_CLK_OUT ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000213 V                   ; 2.79 V              ; -0.0324 V           ; 0.139 V                              ; 0.119 V                              ; 4.42e-10 s                  ; 4.33e-10 s                  ; No                         ; Yes                        ; 2.75 V                      ; 0.000213 V                  ; 2.79 V             ; -0.0324 V          ; 0.139 V                             ; 0.119 V                             ; 4.42e-10 s                 ; 4.33e-10 s                 ; No                        ; Yes                       ;
-; DOUT        ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000247 V                   ; 2.85 V              ; -0.0711 V           ; 0.204 V                              ; 0.181 V                              ; 4.55e-10 s                  ; 4.49e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000247 V                  ; 2.85 V             ; -0.0711 V          ; 0.204 V                             ; 0.181 V                             ; 4.55e-10 s                 ; 4.49e-10 s                 ; No                        ; No                        ;
 ; dig0[0]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000242 V                   ; 2.86 V              ; -0.0805 V           ; 0.358 V                              ; 0.156 V                              ; 3.01e-10 s                  ; 4.34e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000242 V                  ; 2.86 V             ; -0.0805 V          ; 0.358 V                             ; 0.156 V                             ; 3.01e-10 s                 ; 4.34e-10 s                 ; No                        ; No                        ;
 ; dig0[1]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000242 V                   ; 2.86 V              ; -0.0805 V           ; 0.358 V                              ; 0.156 V                              ; 3.01e-10 s                  ; 4.34e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000242 V                  ; 2.86 V             ; -0.0805 V          ; 0.358 V                             ; 0.156 V                             ; 3.01e-10 s                 ; 4.34e-10 s                 ; No                        ; No                        ;
 ; dig0[2]     ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.75 V                       ; 0.000242 V                   ; 2.86 V              ; -0.0814 V           ; 0.36 V                               ; 0.156 V                              ; 3e-10 s                     ; 4.34e-10 s                  ; No                         ; No                         ; 2.75 V                      ; 0.000242 V                  ; 2.86 V             ; -0.0814 V          ; 0.36 V                              ; 0.156 V                             ; 3e-10 s                    ; 4.34e-10 s                 ; No                        ; No                        ;
@@ -1295,15 +1291,14 @@ No synchronizer chains to report.
 +-----------------------------------------+-----------------------------------------+----------+----------+----------+----------+
 ; audio_interface:audioout|i2c_counter[9] ; audio_interface:audioout|i2c_counter[9] ; 0        ; 0        ; 0        ; 10       ;
 ; clk                                     ; audio_interface:audioout|i2c_counter[9] ; 0        ; 0        ; 4        ; 0        ;
-; BIT_CLK                                 ; BIT_CLK                                 ; 117      ; 0        ; 0        ; 0        ;
+; BIT_CLK                                 ; BIT_CLK                                 ; 58       ; 0        ; 0        ; 0        ;
 ; audio_interface:audioout|i2c_counter[9] ; clk                                     ; 6        ; 14       ; 0        ; 0        ;
 ; BIT_CLK                                 ; clk                                     ; 32       ; 0        ; 0        ; 0        ;
-; clk                                     ; clk                                     ; 327      ; 0        ; 0        ; 0        ;
-; clk_gen:clockgen|s_bit_clk              ; clk                                     ; 7        ; 7        ; 0        ; 0        ;
-; BIT_CLK                                 ; clk_gen:clockgen|s_bit_clk              ; 0        ; 0        ; 32       ; 0        ;
-; clk                                     ; clk_gen:clockgen|s_bit_clk              ; 0        ; 0        ; 6        ; 0        ;
-; clk_gen:clockgen|s_bit_clk              ; clk_gen:clockgen|s_bit_clk              ; 0        ; 0        ; 0        ; 47       ;
-; SCLK                                    ; CS                                      ; 0        ; 0        ; 56       ; 0        ;
+; clk                                     ; clk                                     ; 1632     ; 0        ; 0        ; 0        ;
+; CS                                      ; clk                                     ; 0        ; 280      ; 0        ; 0        ;
+; reset                                   ; clk                                     ; 456      ; 225      ; 0        ; 0        ;
+; SCLK                                    ; CS                                      ; 0        ; 0        ; 63       ; 0        ;
+; CS                                      ; reset                                   ; 0        ; 7        ; 0        ; 0        ;
 ; CS                                      ; SCLK                                    ; 8        ; 8        ; 0        ; 0        ;
 ; SCLK                                    ; SCLK                                    ; 7        ; 0        ; 0        ; 0        ;
 +-----------------------------------------+-----------------------------------------+----------+----------+----------+----------+
@@ -1317,15 +1312,14 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +-----------------------------------------+-----------------------------------------+----------+----------+----------+----------+
 ; audio_interface:audioout|i2c_counter[9] ; audio_interface:audioout|i2c_counter[9] ; 0        ; 0        ; 0        ; 10       ;
 ; clk                                     ; audio_interface:audioout|i2c_counter[9] ; 0        ; 0        ; 4        ; 0        ;
-; BIT_CLK                                 ; BIT_CLK                                 ; 117      ; 0        ; 0        ; 0        ;
+; BIT_CLK                                 ; BIT_CLK                                 ; 58       ; 0        ; 0        ; 0        ;
 ; audio_interface:audioout|i2c_counter[9] ; clk                                     ; 6        ; 14       ; 0        ; 0        ;
 ; BIT_CLK                                 ; clk                                     ; 32       ; 0        ; 0        ; 0        ;
-; clk                                     ; clk                                     ; 327      ; 0        ; 0        ; 0        ;
-; clk_gen:clockgen|s_bit_clk              ; clk                                     ; 7        ; 7        ; 0        ; 0        ;
-; BIT_CLK                                 ; clk_gen:clockgen|s_bit_clk              ; 0        ; 0        ; 32       ; 0        ;
-; clk                                     ; clk_gen:clockgen|s_bit_clk              ; 0        ; 0        ; 6        ; 0        ;
-; clk_gen:clockgen|s_bit_clk              ; clk_gen:clockgen|s_bit_clk              ; 0        ; 0        ; 0        ; 47       ;
-; SCLK                                    ; CS                                      ; 0        ; 0        ; 56       ; 0        ;
+; clk                                     ; clk                                     ; 1632     ; 0        ; 0        ; 0        ;
+; CS                                      ; clk                                     ; 0        ; 280      ; 0        ; 0        ;
+; reset                                   ; clk                                     ; 456      ; 225      ; 0        ; 0        ;
+; SCLK                                    ; CS                                      ; 0        ; 0        ; 63       ; 0        ;
+; CS                                      ; reset                                   ; 0        ; 7        ; 0        ; 0        ;
 ; CS                                      ; SCLK                                    ; 8        ; 8        ; 0        ; 0        ;
 ; SCLK                                    ; SCLK                                    ; 7        ; 0        ; 0        ; 0        ;
 +-----------------------------------------+-----------------------------------------+----------+----------+----------+----------+
@@ -1338,6 +1332,11 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; From Clock ; To Clock                                ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+-----------------------------------------+----------+----------+----------+----------+
 ; clk        ; audio_interface:audioout|i2c_counter[9] ; 0        ; 0        ; 4        ; 0        ;
+; reset      ; audio_interface:audioout|i2c_counter[9] ; 0        ; 0        ; 4        ; 4        ;
+; reset      ; BIT_CLK                                 ; 56       ; 56       ; 0        ; 0        ;
+; reset      ; clk                                     ; 158      ; 158      ; 0        ; 0        ;
+; reset      ; CS                                      ; 0        ; 0        ; 21       ; 21       ;
+; reset      ; SCLK                                    ; 8        ; 8        ; 0        ; 0        ;
 +------------+-----------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1348,6 +1347,11 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 ; From Clock ; To Clock                                ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +------------+-----------------------------------------+----------+----------+----------+----------+
 ; clk        ; audio_interface:audioout|i2c_counter[9] ; 0        ; 0        ; 4        ; 0        ;
+; reset      ; audio_interface:audioout|i2c_counter[9] ; 0        ; 0        ; 4        ; 4        ;
+; reset      ; BIT_CLK                                 ; 56       ; 56       ; 0        ; 0        ;
+; reset      ; clk                                     ; 158      ; 158      ; 0        ; 0        ;
+; reset      ; CS                                      ; 0        ; 0        ; 21       ; 21       ;
+; reset      ; SCLK                                    ; 8        ; 8        ; 0        ; 0        ;
 +------------+-----------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1372,9 +1376,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
 ; Unconstrained Input Ports       ; 6     ; 6    ;
-; Unconstrained Input Port Paths  ; 223   ; 223  ;
-; Unconstrained Output Ports      ; 22    ; 22   ;
-; Unconstrained Output Port Paths ; 88    ; 88   ;
+; Unconstrained Input Port Paths  ; 18    ; 18   ;
+; Unconstrained Output Ports      ; 19    ; 19   ;
+; Unconstrained Output Port Paths ; 83    ; 83   ;
 +---------------------------------+-------+------+
 
 
@@ -1384,189 +1388,221 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
-    Info: Processing started: Thu Apr 05 16:19:43 2018
+    Info: Processing started: Fri Apr 06 12:42:48 2018
 Info: Command: quartus_sta I2S_IN -c I2S_IN
 Info: qsta_default_script.tcl version: #11
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
-Warning (335093): TimeQuest Timing Analyzer is analyzing 14 combinational loops as latches.
+Warning (335093): TimeQuest Timing Analyzer is analyzing 28 combinational loops as latches.
 Critical Warning (332012): Synopsys Design Constraints File file not found: 'I2S_IN.sdc'. A Synopsys Design Constraints File is required by the TimeQuest Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
     Info (332105): create_clock -period 1.000 -name clk clk
     Info (332105): create_clock -period 1.000 -name BIT_CLK BIT_CLK
-    Info (332105): create_clock -period 1.000 -name clk_gen:clockgen|s_bit_clk clk_gen:clockgen|s_bit_clk
-    Info (332105): create_clock -period 1.000 -name audio_interface:audioout|i2c_counter[9] audio_interface:audioout|i2c_counter[9]
-    Info (332105): create_clock -period 1.000 -name SCLK SCLK
     Info (332105): create_clock -period 1.000 -name CS CS
+    Info (332105): create_clock -period 1.000 -name SCLK SCLK
+    Info (332105): create_clock -period 1.000 -name reset reset
+    Info (332105): create_clock -period 1.000 -name audio_interface:audioout|i2c_counter[9] audio_interface:audioout|i2c_counter[9]
 Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Info: Found TIMEQUEST_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the TimeQuest Timing Analyzer.
-Info (332146): Worst-case setup slack is -12.079
+Info (332146): Worst-case setup slack is -10.538
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -12.079             -31.962 clk_gen:clockgen|s_bit_clk 
-    Info (332119):    -8.660            -118.325 CS 
-    Info (332119):    -7.630             -61.024 SCLK 
-    Info (332119):    -7.192            -311.526 clk 
-    Info (332119):    -3.355             -12.097 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):    -1.349             -33.502 BIT_CLK 
-Info (332146): Worst-case hold slack is -3.489
+    Info (332119):   -10.538            -194.417 CS 
+    Info (332119):    -7.874            -506.856 clk 
+    Info (332119):    -7.580             -60.592 SCLK 
+    Info (332119):    -4.255             -28.024 reset 
+    Info (332119):    -4.070             -14.517 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):    -0.807              -9.138 BIT_CLK 
+Info (332146): Worst-case hold slack is -0.868
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.489              -4.212 clk 
-    Info (332119):    -0.779              -6.179 SCLK 
-    Info (332119):     0.218               0.000 BIT_CLK 
-    Info (332119):     0.464               0.000 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):     0.466               0.000 clk_gen:clockgen|s_bit_clk 
-    Info (332119):     1.718               0.000 CS 
-Info (332146): Worst-case recovery slack is -3.507
+    Info (332119):    -0.868              -6.907 SCLK 
+    Info (332119):    -0.182              -0.182 clk 
+    Info (332119):     0.245               0.000 BIT_CLK 
+    Info (332119):     0.673               0.000 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):     1.189               0.000 reset 
+    Info (332119):     1.998               0.000 CS 
+Info (332146): Worst-case recovery slack is -7.290
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.507             -13.841 audio_interface:audioout|i2c_counter[9] 
-Info (332146): Worst-case removal slack is 2.600
+    Info (332119):    -7.290            -130.220 CS 
+    Info (332119):    -4.985            -725.560 clk 
+    Info (332119):    -3.629             -14.507 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):    -2.286            -121.569 BIT_CLK 
+    Info (332119):    -1.969             -15.684 SCLK 
+Info (332146): Worst-case removal slack is -4.870
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     2.600               0.000 audio_interface:audioout|i2c_counter[9] 
-Info (332146): Worst-case minimum pulse width slack is -0.410
+    Info (332119):    -4.870            -262.051 BIT_CLK 
+    Info (332119):    -4.525             -36.123 SCLK 
+    Info (332119):     1.024               0.000 clk 
+    Info (332119):     1.465               0.000 CS 
+    Info (332119):     2.015               0.000 audio_interface:audioout|i2c_counter[9] 
+Info (332146): Worst-case minimum pulse width slack is -2.225
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.410             -51.743 clk 
-    Info (332119):    -0.394             -32.435 BIT_CLK 
-    Info (332119):    -0.394              -4.581 SCLK 
-    Info (332119):    -0.394              -3.363 clk_gen:clockgen|s_bit_clk 
-    Info (332119):    -0.394              -2.603 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):     0.194               0.000 CS 
+    Info (332119):    -2.225            -137.818 clk 
+    Info (332119):    -2.225             -89.801 BIT_CLK 
+    Info (332119):    -0.394              -4.528 SCLK 
+    Info (332119):    -0.394              -2.706 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):     0.093               0.000 reset 
+    Info (332119):     0.140               0.000 CS 
 Info: Analyzing Slow 1100mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the TimeQuest Timing Analyzer.
-Info (332146): Worst-case setup slack is -11.933
+Info (332146): Worst-case setup slack is -10.428
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):   -11.933             -32.391 clk_gen:clockgen|s_bit_clk 
-    Info (332119):    -8.486            -116.589 CS 
-    Info (332119):    -7.183             -57.461 SCLK 
-    Info (332119):    -6.885            -296.184 clk 
-    Info (332119):    -3.464             -12.527 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):    -1.288             -31.389 BIT_CLK 
-Info (332146): Worst-case hold slack is -3.564
+    Info (332119):   -10.428            -191.838 CS 
+    Info (332119):    -7.684            -496.336 clk 
+    Info (332119):    -7.117             -56.871 SCLK 
+    Info (332119):    -4.157             -14.598 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):    -4.097             -27.342 reset 
+    Info (332119):    -0.724              -6.078 BIT_CLK 
+Info (332146): Worst-case hold slack is -1.202
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.564              -6.389 clk 
-    Info (332119):    -1.127              -8.968 SCLK 
-    Info (332119):     0.203               0.000 BIT_CLK 
-    Info (332119):     0.474               0.000 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):     0.495               0.000 clk_gen:clockgen|s_bit_clk 
-    Info (332119):     1.666               0.000 CS 
-Info (332146): Worst-case recovery slack is -3.568
+    Info (332119):    -1.202              -9.556 SCLK 
+    Info (332119):    -0.368              -0.596 clk 
+    Info (332119):     0.135               0.000 BIT_CLK 
+    Info (332119):     0.692               0.000 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):     1.072               0.000 reset 
+    Info (332119):     1.961               0.000 CS 
+Info (332146): Worst-case recovery slack is -6.974
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -3.568             -14.238 audio_interface:audioout|i2c_counter[9] 
-Info (332146): Worst-case removal slack is 2.788
+    Info (332119):    -6.974            -124.362 CS 
+    Info (332119):    -4.774            -692.284 clk 
+    Info (332119):    -3.648             -14.585 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):    -2.224            -118.349 BIT_CLK 
+    Info (332119):    -1.914             -15.240 SCLK 
+Info (332146): Worst-case removal slack is -4.740
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     2.788               0.000 audio_interface:audioout|i2c_counter[9] 
-Info (332146): Worst-case minimum pulse width slack is -0.394
+    Info (332119):    -4.740            -253.596 BIT_CLK 
+    Info (332119):    -4.341             -34.645 SCLK 
+    Info (332119):     0.895               0.000 clk 
+    Info (332119):     1.197               0.000 CS 
+    Info (332119):     1.995               0.000 audio_interface:audioout|i2c_counter[9] 
+Info (332146): Worst-case minimum pulse width slack is -2.225
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.394             -55.668 clk 
-    Info (332119):    -0.394             -30.031 BIT_CLK 
-    Info (332119):    -0.394              -4.240 SCLK 
-    Info (332119):    -0.394              -3.200 clk_gen:clockgen|s_bit_clk 
-    Info (332119):    -0.394              -2.327 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):     0.178               0.000 CS 
+    Info (332119):    -2.225            -144.042 clk 
+    Info (332119):    -2.225             -88.781 BIT_CLK 
+    Info (332119):    -0.394              -4.121 SCLK 
+    Info (332119):    -0.394              -2.583 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):     0.105               0.000 reset 
+    Info (332119):     0.114               0.000 CS 
 Info: Analyzing Fast 1100mV 85C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the TimeQuest Timing Analyzer.
-Info (332146): Worst-case setup slack is -6.595
+Info (332146): Worst-case setup slack is -5.736
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.595             -17.355 clk_gen:clockgen|s_bit_clk 
-    Info (332119):    -5.665             -45.284 SCLK 
-    Info (332119):    -4.270             -57.417 CS 
-    Info (332119):    -3.787            -148.914 clk 
-    Info (332119):    -1.712              -6.014 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):    -0.576              -5.833 BIT_CLK 
-Info (332146): Worst-case hold slack is -2.045
+    Info (332119):    -5.736             -45.855 SCLK 
+    Info (332119):    -5.437             -97.833 CS 
+    Info (332119):    -4.941            -264.716 clk 
+    Info (332119):    -2.558             -16.445 reset 
+    Info (332119):    -2.144              -7.475 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):    -0.125              -0.467 BIT_CLK 
+Info (332146): Worst-case hold slack is 0.036
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.045              -2.111 clk 
-    Info (332119):     0.051               0.000 SCLK 
-    Info (332119):     0.126               0.000 BIT_CLK 
-    Info (332119):     0.244               0.000 clk_gen:clockgen|s_bit_clk 
-    Info (332119):     0.291               0.000 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):     0.863               0.000 CS 
-Info (332146): Worst-case recovery slack is -1.821
+    Info (332119):     0.036               0.000 SCLK 
+    Info (332119):     0.054               0.000 clk 
+    Info (332119):     0.136               0.000 BIT_CLK 
+    Info (332119):     0.349               0.000 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):     0.869               0.000 CS 
+    Info (332119):     1.198               0.000 reset 
+Info (332146): Worst-case recovery slack is -4.753
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.821              -7.202 audio_interface:audioout|i2c_counter[9] 
-Info (332146): Worst-case removal slack is 1.477
+    Info (332119):    -4.753             -84.609 CS 
+    Info (332119):    -2.915            -434.051 clk 
+    Info (332119):    -1.861              -7.437 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):    -1.412             -76.260 BIT_CLK 
+    Info (332119):    -1.262             -10.067 SCLK 
+Info (332146): Worst-case removal slack is -2.649
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.477               0.000 audio_interface:audioout|i2c_counter[9] 
-Info (332146): Worst-case minimum pulse width slack is -0.392
+    Info (332119):    -2.649            -142.340 BIT_CLK 
+    Info (332119):    -2.460             -19.641 SCLK 
+    Info (332119):     0.557               0.000 clk 
+    Info (332119):     1.083               0.000 CS 
+    Info (332119):     1.318               0.000 audio_interface:audioout|i2c_counter[9] 
+Info (332146): Worst-case minimum pulse width slack is -1.702
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.392              -8.846 clk 
-    Info (332119):    -0.280             -15.274 BIT_CLK 
-    Info (332119):    -0.263              -2.126 SCLK 
-    Info (332119):    -0.030              -0.068 CS 
-    Info (332119):    -0.004              -0.004 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):     0.062               0.000 clk_gen:clockgen|s_bit_clk 
+    Info (332119):    -1.702             -64.723 clk 
+    Info (332119):    -1.702             -64.670 BIT_CLK 
+    Info (332119):    -0.258              -2.075 SCLK 
+    Info (332119):    -0.119              -1.010 reset 
+    Info (332119):    -0.110              -2.688 CS 
+    Info (332119):     0.115               0.000 audio_interface:audioout|i2c_counter[9] 
 Info: Analyzing Fast 1100mV 0C Model
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in TimeQuest to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the TimeQuest Timing Analyzer.
-Info (332146): Worst-case setup slack is -6.351
+Info (332146): Worst-case setup slack is -5.129
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.351             -16.878 clk_gen:clockgen|s_bit_clk 
-    Info (332119):    -4.879             -39.008 SCLK 
-    Info (332119):    -4.094             -55.278 CS 
-    Info (332119):    -3.505            -134.510 clk 
-    Info (332119):    -1.727              -6.069 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):    -0.421              -3.277 BIT_CLK 
-Info (332146): Worst-case hold slack is -2.033
+    Info (332119):    -5.129             -93.285 CS 
+    Info (332119):    -4.924            -248.257 clk 
+    Info (332119):    -4.911             -39.264 SCLK 
+    Info (332119):    -2.412             -15.718 reset 
+    Info (332119):    -2.103              -7.311 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):    -0.005              -0.005 BIT_CLK 
+Info (332146): Worst-case hold slack is -0.376
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.033              -3.369 clk 
-    Info (332119):    -0.379              -2.994 SCLK 
-    Info (332119):     0.115               0.000 BIT_CLK 
-    Info (332119):     0.227               0.000 clk_gen:clockgen|s_bit_clk 
-    Info (332119):     0.267               0.000 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):     0.776               0.000 CS 
-Info (332146): Worst-case recovery slack is -1.799
+    Info (332119):    -0.376              -2.989 SCLK 
+    Info (332119):    -0.131              -0.403 clk 
+    Info (332119):     0.070               0.000 BIT_CLK 
+    Info (332119):     0.332               0.000 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):     0.833               0.000 CS 
+    Info (332119):     1.152               0.000 reset 
+Info (332146): Worst-case recovery slack is -4.027
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -1.799              -7.112 audio_interface:audioout|i2c_counter[9] 
-Info (332146): Worst-case removal slack is 1.522
+    Info (332119):    -4.027             -71.179 CS 
+    Info (332119):    -2.826            -420.288 clk 
+    Info (332119):    -1.810              -7.236 audio_interface:audioout|i2c_counter[9] 
+    Info (332119):    -1.393             -75.414 BIT_CLK 
+    Info (332119):    -1.233              -9.835 SCLK 
+Info (332146): Worst-case removal slack is -2.634
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     1.522               0.000 audio_interface:audioout|i2c_counter[9] 
-Info (332146): Worst-case minimum pulse width slack is -0.382
+    Info (332119):    -2.634            -141.352 BIT_CLK 
+    Info (332119):    -2.453             -19.589 SCLK 
+    Info (332119):     0.484               0.000 clk 
+    Info (332119):     0.750               0.000 CS 
+    Info (332119):     1.317               0.000 audio_interface:audioout|i2c_counter[9] 
+Info (332146): Worst-case minimum pulse width slack is -1.702
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.382              -8.819 clk 
-    Info (332119):    -0.264             -14.414 BIT_CLK 
-    Info (332119):    -0.249              -2.018 SCLK 
-    Info (332119):    -0.024              -0.053 CS 
-    Info (332119):     0.019               0.000 audio_interface:audioout|i2c_counter[9] 
-    Info (332119):     0.060               0.000 clk_gen:clockgen|s_bit_clk 
+    Info (332119):    -1.702             -64.930 clk 
+    Info (332119):    -1.702             -64.296 BIT_CLK 
+    Info (332119):    -0.247              -1.987 SCLK 
+    Info (332119):    -0.109              -2.979 CS 
+    Info (332119):    -0.097              -0.783 reset 
+    Info (332119):     0.128               0.000 audio_interface:audioout|i2c_counter[9] 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 1144 megabytes
-    Info: Processing ended: Thu Apr 05 16:19:51 2018
+    Info: Peak virtual memory: 1150 megabytes
+    Info: Processing ended: Fri Apr 06 12:42:56 2018
     Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:08
 

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for I2S_IN
-Thu Apr 05 16:18:41 2018
+Fri Apr 06 12:41:42 2018
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
 
 
@@ -13,16 +13,16 @@ Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. State Machine - |Overall|audio_interface:audioout|state
-  9. User-Specified and Inferred Latches
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Parameter Settings for User Entity Instance: i2s_in:i2sin
- 15. Parameter Settings for User Entity Instance: clk_gen:clockgen
- 16. Parameter Settings for User Entity Instance: i2s_out:i2out
- 17. Port Connectivity Checks: "i2s_out:i2out"
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. State Machine - |Overall|audio_interface:audioout|state
+ 10. User-Specified and Inferred Latches
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for User Entity Instance: i2s_in:i2sin
+ 16. Parameter Settings for User Entity Instance: volume_control:volume
+ 17. Port Connectivity Checks: "volume_control:volume"
  18. Port Connectivity Checks: "spi_async:spi"
  19. Port Connectivity Checks: "audio_interface:audioout"
  20. Port Connectivity Checks: "i2s_in:i2sin"
@@ -55,17 +55,17 @@ agreement for further details.
 +------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                 ;
 +---------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Apr 05 16:18:41 2018      ;
+; Analysis & Synthesis Status     ; Successful - Fri Apr 06 12:41:42 2018      ;
 ; Quartus II 64-Bit Version       ; 15.0.0 Build 145 04/22/2015 SJ Web Edition ;
 ; Revision Name                   ; I2S_IN                                     ;
 ; Top-level Entity Name           ; Overall                                    ;
 ; Family                          ; Cyclone V                                  ;
 ; Logic utilization (in ALMs)     ; N/A                                        ;
-; Total registers                 ; 160                                        ;
-; Total pins                      ; 32                                         ;
+; Total registers                 ; 217                                        ;
+; Total pins                      ; 30                                         ;
 ; Total virtual pins              ; 0                                          ;
 ; Total block memory bits         ; 0                                          ;
-; Total DSP Blocks                ; 0                                          ;
+; Total DSP Blocks                ; 3                                          ;
 ; Total HSSI RX PCSs              ; 0                                          ;
 ; Total HSSI PMA RX Deserializers ; 0                                          ;
 ; Total HSSI TX PCSs              ; 0                                          ;
@@ -185,12 +185,11 @@ agreement for further details.
 +----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                    ; Library ;
 +----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
+; volume_control.vhd               ; yes             ; User VHDL File  ; C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/volume_control.vhd  ;         ;
 ; audio_interface.vhd              ; yes             ; User VHDL File  ; C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/audio_interface.vhd ;         ;
 ; I2S_IN.vhd                       ; yes             ; User VHDL File  ; C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/I2S_IN.vhd          ;         ;
 ; Overall.vhd                      ; yes             ; User VHDL File  ; C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/Overall.vhd         ;         ;
 ; spi_async.vhd                    ; yes             ; User VHDL File  ; C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/spi_async.vhd       ;         ;
-; CLK_GEN.vhd                      ; yes             ; User VHDL File  ; C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/CLK_GEN.vhd         ;         ;
-; I2S_OUT.vhd                      ; yes             ; User VHDL File  ; C:/Users/Rick/Desktop/PCM3168-master/I2S_IN/I2S_OUT.vhd         ;         ;
 +----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
 
 
@@ -199,24 +198,24 @@ agreement for further details.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimate of Logic utilization (ALMs needed) ; 109         ;
+; Estimate of Logic utilization (ALMs needed) ; 139         ;
 ;                                             ;             ;
-; Combinational ALUT usage for logic          ; 107         ;
-;     -- 7 input functions                    ; 17          ;
-;     -- 6 input functions                    ; 12          ;
-;     -- 5 input functions                    ; 11          ;
-;     -- 4 input functions                    ; 37          ;
-;     -- <=3 input functions                  ; 30          ;
+; Combinational ALUT usage for logic          ; 171         ;
+;     -- 7 input functions                    ; 9           ;
+;     -- 6 input functions                    ; 21          ;
+;     -- 5 input functions                    ; 6           ;
+;     -- 4 input functions                    ; 51          ;
+;     -- <=3 input functions                  ; 84          ;
 ;                                             ;             ;
-; Dedicated logic registers                   ; 160         ;
+; Dedicated logic registers                   ; 217         ;
 ;                                             ;             ;
-; I/O pins                                    ; 32          ;
+; I/O pins                                    ; 30          ;
 ;                                             ;             ;
-; Total DSP Blocks                            ; 0           ;
+; Total DSP Blocks                            ; 3           ;
 ;                                             ;             ;
 ; Maximum fan-out node                        ; reset~input ;
-; Maximum fan-out                             ; 171         ;
-; Total fan-out                               ; 1102        ;
+; Maximum fan-out                             ; 249         ;
+; Total fan-out                               ; 1502        ;
 ; Average fan-out                             ; 3.33        ;
 +---------------------------------------------+-------------+
 
@@ -226,14 +225,26 @@ agreement for further details.
 +-------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node    ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name               ; Library Name ;
 +-------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------+--------------+
-; |Overall                      ; 107 (0)           ; 160 (0)      ; 0                 ; 0          ; 32   ; 0            ; |Overall                          ; work         ;
-;    |audio_interface:audioout| ; 50 (50)           ; 88 (88)      ; 0                 ; 0          ; 0    ; 0            ; |Overall|audio_interface:audioout ; work         ;
-;    |clk_gen:clockgen|         ; 10 (10)           ; 8 (8)        ; 0                 ; 0          ; 0    ; 0            ; |Overall|clk_gen:clockgen         ; work         ;
+; |Overall                      ; 171 (0)           ; 217 (0)      ; 0                 ; 3          ; 30   ; 0            ; |Overall                          ; work         ;
+;    |audio_interface:audioout| ; 53 (53)           ; 89 (89)      ; 0                 ; 0          ; 0    ; 0            ; |Overall|audio_interface:audioout ; work         ;
 ;    |i2s_in:i2sin|             ; 3 (3)             ; 50 (50)      ; 0                 ; 0          ; 0    ; 0            ; |Overall|i2s_in:i2sin             ; work         ;
-;    |i2s_out:i2out|            ; 16 (16)           ; 6 (6)        ; 0                 ; 0          ; 0    ; 0            ; |Overall|i2s_out:i2out            ; work         ;
-;    |spi_async:spi|            ; 28 (28)           ; 8 (8)        ; 0                 ; 0          ; 0    ; 0            ; |Overall|spi_async:spi            ; work         ;
+;    |spi_async:spi|            ; 35 (35)           ; 8 (8)        ; 0                 ; 0          ; 0    ; 0            ; |Overall|spi_async:spi            ; work         ;
+;    |volume_control:volume|    ; 80 (80)           ; 70 (70)      ; 0                 ; 3          ; 0    ; 0            ; |Overall|volume_control:volume    ; work         ;
 +-------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-----------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary  ;
++---------------------------------+-------------+
+; Statistic                       ; Number Used ;
++---------------------------------+-------------+
+; Independent 9x9                 ; 1           ;
+; Independent 18x18               ; 2           ;
+; Total number of DSP blocks      ; 3           ;
+;                                 ;             ;
+; Fixed Point Unsigned Multiplier ; 3           ;
++---------------------------------+-------------+
 
 
 Encoding Type:  One-Hot
@@ -296,23 +307,27 @@ Encoding Type:  One-Hot
 ; spi_async:spi|dig1[4]                               ; CS                  ; yes                    ;
 ; spi_async:spi|dig1[5]                               ; CS                  ; yes                    ;
 ; spi_async:spi|dig1[6]                               ; CS                  ; yes                    ;
-; Number of user-specified and inferred latches = 14  ;                     ;                        ;
+; spi_async:spi|BYTE0[0]                              ; CS                  ; yes                    ;
+; spi_async:spi|BYTE0[1]                              ; CS                  ; yes                    ;
+; spi_async:spi|BYTE0[2]                              ; CS                  ; yes                    ;
+; spi_async:spi|BYTE0[3]                              ; CS                  ; yes                    ;
+; spi_async:spi|BYTE0[4]                              ; CS                  ; yes                    ;
+; spi_async:spi|BYTE0[5]                              ; CS                  ; yes                    ;
+; spi_async:spi|BYTE0[6]                              ; CS                  ; yes                    ;
+; Number of user-specified and inferred latches = 21  ;                     ;                        ;
 +-----------------------------------------------------+---------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
-+---------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                          ;
-+---------------------------------------------+-----------------------------------------------+
-; Register name                               ; Reason for Removal                            ;
-+---------------------------------------------+-----------------------------------------------+
-; clk_gen:clockgen|\p_bit_clk:v_lr_clk_enable ; Stuck at GND due to stuck port data_in        ;
-; clk_gen:clockgen|s_counter_bit[1,2]         ; Stuck at GND due to stuck port data_in        ;
-; audio_interface:audioout|flag1              ; Lost fanout                                   ;
-; audio_interface:audioout|i2c_counter[0]     ; Merged with clk_gen:clockgen|s_counter_bit[0] ;
-; i2s_out:i2out|counter[4]                    ; Stuck at GND due to stuck port data_in        ;
-; Total Number of Removed Registers = 6       ;                                               ;
-+---------------------------------------------+-----------------------------------------------+
++--------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                             ;
++---------------------------------------+----------------------------------------+
+; Register name                         ; Reason for Removal                     ;
++---------------------------------------+----------------------------------------+
+; audio_interface:audioout|flag1        ; Lost fanout                            ;
+; volume_control:volume|count[1]        ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 2 ;                                        ;
++---------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -320,12 +335,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 160   ;
-; Number of registers using Synchronous Clear  ; 0     ;
+; Total registers                              ; 217   ;
+; Number of registers using Synchronous Clear  ; 20    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 160   ;
+; Number of registers using Asynchronous Clear ; 216   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 109   ;
+; Number of registers using Clock Enable       ; 116   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -335,12 +350,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; clk_gen:clockgen|s_lr_clk              ; 8       ;
 ; audio_interface:audioout|Bcount[3]     ; 3       ;
 ; audio_interface:audioout|Bcount[4]     ; 2       ;
 ; audio_interface:audioout|Bcount[2]     ; 11      ;
 ; audio_interface:audioout|Bcount[1]     ; 12      ;
 ; audio_interface:audioout|Bcount[0]     ; 9       ;
+; volume_control:volume|scalar[7]        ; 13      ;
 ; Total number of inverted registers = 6 ;         ;
 +----------------------------------------+---------+
 
@@ -350,8 +365,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |Overall|i2s_out:i2out|counter[3]           ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |Overall|clk_gen:clockgen|s_counter_lr[4]   ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; Yes        ; |Overall|volume_control:volume|scalar[6]    ;
 ; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |Overall|audio_interface:audioout|Bcount[4] ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------+
 
@@ -366,44 +380,32 @@ Note: All latches listed above may not be present at the end of synthesis due to
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+---------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: clk_gen:clockgen ;
-+----------------+-------+--------------------------------------+
-; Parameter Name ; Value ; Type                                 ;
-+----------------+-------+--------------------------------------+
-; width          ; 16    ; Signed Integer                       ;
-; clk_divider    ; 4     ; Signed Integer                       ;
-+----------------+-------+--------------------------------------+
++--------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: volume_control:volume ;
++----------------+---------+-----------------------------------------+
+; Parameter Name ; Value   ; Type                                    ;
++----------------+---------+-----------------------------------------+
+; clk_div        ; 1000000 ; Signed Integer                          ;
++----------------+---------+-----------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: i2s_out:i2out ;
-+----------------+-------+-----------------------------------+
-; Parameter Name ; Value ; Type                              ;
-+----------------+-------+-----------------------------------+
-; width          ; 16    ; Signed Integer                    ;
-+----------------+-------+-----------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "volume_control:volume"                                                              ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; vol  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "i2s_out:i2out"                                                                            ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port       ; Type   ; Severity ; Details                                                                             ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-; data_rdy_l ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; data_rdy_r ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------------+--------+----------+-------------------------------------------------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "spi_async:spi"                                                                       ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; Port  ; Type   ; Severity ; Details                                                                             ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; byte0 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "spi_async:spi"                                                                          ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; byte0[7] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------+
@@ -434,27 +436,30 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 160                         ;
-;     CLR               ; 51                          ;
-;     ENA CLR           ; 109                         ;
+; arriav_ff             ; 217                         ;
+;     CLR               ; 81                          ;
+;     CLR SCLR          ; 20                          ;
+;     ENA               ; 1                           ;
+;     ENA CLR           ; 115                         ;
 ; arriav_io_obuf        ; 1                           ;
-; arriav_lcell_comb     ; 108                         ;
-;     arith             ; 9                           ;
-;         1 data inputs ; 8                           ;
+; arriav_lcell_comb     ; 171                         ;
+;     arith             ; 44                          ;
+;         1 data inputs ; 43                          ;
 ;         2 data inputs ; 1                           ;
-;     extend            ; 17                          ;
-;         7 data inputs ; 17                          ;
-;     normal            ; 82                          ;
-;         1 data inputs ; 5                           ;
-;         2 data inputs ; 9                           ;
-;         3 data inputs ; 8                           ;
-;         4 data inputs ; 37                          ;
-;         5 data inputs ; 11                          ;
-;         6 data inputs ; 12                          ;
-; boundary_port         ; 32                          ;
+;     extend            ; 9                           ;
+;         7 data inputs ; 9                           ;
+;     normal            ; 118                         ;
+;         1 data inputs ; 3                           ;
+;         2 data inputs ; 19                          ;
+;         3 data inputs ; 18                          ;
+;         4 data inputs ; 51                          ;
+;         5 data inputs ; 6                           ;
+;         6 data inputs ; 21                          ;
+; arriav_mac            ; 3                           ;
+; boundary_port         ; 30                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.00                        ;
-; Average LUT depth     ; 1.98                        ;
+; Max LUT depth         ; 3.00                        ;
+; Average LUT depth     ; 1.53                        ;
 +-----------------------+-----------------------------+
 
 
@@ -473,9 +478,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
-    Info: Processing started: Thu Apr 05 16:18:30 2018
+    Info: Processing started: Fri Apr 06 12:41:30 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off I2S_IN -c I2S_IN
 Info (11104): Parallel Compilation has detected 8 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 4 of the 4 physical processors detected instead.
+Info (12021): Found 2 design units, including 1 entities, in source file volume_control.vhd
+    Info (12022): Found design unit 1: volume_control-bhv
+    Info (12023): Found entity 1: volume_control
 Info (12021): Found 2 design units, including 1 entities, in source file audio_interface.vhd
     Info (12022): Found design unit 1: audio_interface-Behavorial
     Info (12023): Found entity 1: audio_interface
@@ -488,15 +496,6 @@ Info (12021): Found 2 design units, including 1 entities, in source file overall
 Info (12021): Found 2 design units, including 1 entities, in source file spi_async.vhd
     Info (12022): Found design unit 1: spi_async-behav
     Info (12023): Found entity 1: spi_async
-Info (12021): Found 2 design units, including 1 entities, in source file clk_gen.vhd
-    Info (12022): Found design unit 1: clk_gen-rtl
-    Info (12023): Found entity 1: clk_gen
-Info (12021): Found 2 design units, including 1 entities, in source file i2s_out.vhd
-    Info (12022): Found design unit 1: i2s_out-rtl
-    Info (12023): Found entity 1: i2s_out
-Info (12021): Found 2 design units, including 1 entities, in source file i2s_in_tb.vhd
-    Info (12022): Found design unit 1: i2s_in_tb_vhd-behavior
-    Info (12023): Found entity 1: i2s_in_tb_vhd
 Info (12127): Elaborating entity "Overall" for the top level hierarchy
 Info (12128): Elaborating entity "i2s_in" for hierarchy "i2s_in:i2sin"
 Info (12128): Elaborating entity "audio_interface" for hierarchy "audio_interface:audioout"
@@ -527,10 +526,17 @@ Info (10041): Inferred latch for "BYTE0[4]" at spi_async.vhd(43)
 Info (10041): Inferred latch for "BYTE0[5]" at spi_async.vhd(43)
 Info (10041): Inferred latch for "BYTE0[6]" at spi_async.vhd(43)
 Info (10041): Inferred latch for "BYTE0[7]" at spi_async.vhd(43)
-Info (12128): Elaborating entity "clk_gen" for hierarchy "clk_gen:clockgen"
-Warning (10492): VHDL Process Statement warning at CLK_GEN.vhd(103): signal "s_bit_clk" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at CLK_GEN.vhd(104): signal "s_lr_clk" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Info (12128): Elaborating entity "i2s_out" for hierarchy "i2s_out:i2out"
+Info (12128): Elaborating entity "volume_control" for hierarchy "volume_control:volume"
+Warning (10492): VHDL Process Statement warning at volume_control.vhd(40): signal "volume" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at volume_control.vhd(41): signal "volume" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
+    Warning (13310): Register "volume_control:volume|scaled_vol[0]" is converted into an equivalent circuit using register "volume_control:volume|scaled_vol[0]~_emulated" and latch "volume_control:volume|scaled_vol[0]~1"
+    Warning (13310): Register "volume_control:volume|scaled_vol[1]" is converted into an equivalent circuit using register "volume_control:volume|scaled_vol[1]~_emulated" and latch "volume_control:volume|scaled_vol[1]~5"
+    Warning (13310): Register "volume_control:volume|scaled_vol[2]" is converted into an equivalent circuit using register "volume_control:volume|scaled_vol[2]~_emulated" and latch "volume_control:volume|scaled_vol[2]~9"
+    Warning (13310): Register "volume_control:volume|scaled_vol[3]" is converted into an equivalent circuit using register "volume_control:volume|scaled_vol[3]~_emulated" and latch "volume_control:volume|scaled_vol[3]~13"
+    Warning (13310): Register "volume_control:volume|scaled_vol[4]" is converted into an equivalent circuit using register "volume_control:volume|scaled_vol[4]~_emulated" and latch "volume_control:volume|scaled_vol[4]~17"
+    Warning (13310): Register "volume_control:volume|scaled_vol[5]" is converted into an equivalent circuit using register "volume_control:volume|scaled_vol[5]~_emulated" and latch "volume_control:volume|scaled_vol[5]~21"
+    Warning (13310): Register "volume_control:volume|scaled_vol[6]" is converted into an equivalent circuit using register "volume_control:volume|scaled_vol[6]~_emulated" and latch "volume_control:volume|scaled_vol[6]~25"
 Info (286030): Timing-Driven Synthesis is running
 Critical Warning (18061): Ignored Power-Up Level option on the following registers
     Critical Warning (18010): Register audio_interface:audioout|Bcount[3] will power up to High
@@ -538,17 +544,19 @@ Critical Warning (18061): Ignored Power-Up Level option on the following registe
     Critical Warning (18010): Register audio_interface:audioout|Bcount[2] will power up to High
     Critical Warning (18010): Register audio_interface:audioout|Bcount[1] will power up to High
     Critical Warning (18010): Register audio_interface:audioout|Bcount[0] will power up to High
+    Critical Warning (18010): Register volume_control:volume|scalar[7] will power up to High
 Info (17049): 1 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 262 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 10 input pins
-    Info (21059): Implemented 22 output pins
-    Info (21061): Implemented 230 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 12 warnings
-    Info: Peak virtual memory: 838 megabytes
-    Info: Processing ended: Thu Apr 05 16:18:41 2018
-    Info: Elapsed time: 00:00:11
+Info (21057): Implemented 360 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 11 input pins
+    Info (21059): Implemented 19 output pins
+    Info (21061): Implemented 327 logic cells
+    Info (21062): Implemented 3 DSP elements
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 21 warnings
+    Info: Peak virtual memory: 857 megabytes
+    Info: Processing ended: Fri Apr 06 12:41:42 2018
+    Info: Elapsed time: 00:00:12
     Info: Total CPU time (on all processors): 00:00:26
 
 

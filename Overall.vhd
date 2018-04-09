@@ -1,20 +1,20 @@
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+
 ENTITY Overall IS
   PORT (
 		-- Main FPGA pins
 		clk  				: IN std_logic;
       reset  			: IN std_logic;
+		
+		-- TEST SWITCH
+		switch : IN std_logic;
 	
 		--  I2S ports
 		LR_CLK    : in  std_logic;      --Left/Right indicator clock
 		BIT_CLK   : in  std_logic;      --Bit clock
 		DIN       : in  std_logic;      --Data Input
-		
-		-- I2s OUTPUT
-		LR_CLK_OUT : out std_logic;
-		BIT_CLK_OUT : out std_logic;
-		DOUT		 : out std_logic;		  --Data Output
 		
 		-- SPI SHIT
 		SCLK 	: IN std_logic;
@@ -80,54 +80,6 @@ port(
 );
 end COMPONENT i2s_in;
 
-component i2s_out is 
--- width: How many bits (from MSB) are gathered from the serial I2S input
-generic(width : integer := 16);
-
-port(
-	--  I2S ports
-	LR_CLK    : in  std_logic;      --Left/Right indicator clock
-	BIT_CLK   : in  std_logic;      --Bit clock
-	DOUT      : out std_logic;      --Data Output
-	
-	-- EXTRA OUTPORTS
-	LR_CLK_OUT : out std_logic;
-	BIT_CLK_OUT : out std_logic;
-	
-	-- Control ports
-	RESET     : in  std_logic;      --Asynchronous Reset (Active Low)
-	
-	-- Parallel ports 
-	-- use (width-1 downto 0); for big endian fotmat 
-	-- or (0 to width-1) for little endian
-	DATA_L    : in std_logic_vector(0 to width-1);
-	DATA_R    : in std_logic_vector(0 to width-1);
-	
-	-- Output status ports
-	DATA_RDY_L    : out std_logic;      --Falling edge means data is ready
-	DATA_RDY_R    : out std_logic       --Falling edge means data is ready
-);
-end component i2s_out;
-
-component clk_gen is 
--- width: How many bits (from MSB) are gathered from the serial I2S input
-generic(
-		width       : integer := 16;
-		clk_divider : integer :=  4  -- a multiple of 2
-);
-port(
-	--  Input ports
-	CLK        : in std_logic;       --System clock
-
-	-- Control ports
-	RESET      : in std_logic;       --Asynchronous Reset (Active Low)
-
-	-- Output ports
-	BIT_CLK    : out std_logic;      --Bit Clock
-	LR_CLK     : out std_logic       --Left/Right Clock
-);
-end component clk_gen;
-
 component spi_async IS
   PORT (	SCLK 	: IN std_logic;
 			RESET : IN std_logic;
@@ -138,18 +90,36 @@ component spi_async IS
 		  );
 END component spi_async;
 
+component volume_control IS 
+	GENERIC (clk_div	: integer := 1000000);
+	PORT
+	(
+		reset				: IN std_logic;
+		music_L			: IN std_logic_vector(15 DOWNTO 0);
+		music_R			: IN std_logic_vector(15 DOWNTO 0);
+		speak				: IN std_logic;
+		clock				: IN std_logic;
+		volume			: IN integer RANGE 0 TO 100;
+		
+		vol				: OUT integer RANGE 0 TO 100;
+		scaled_music_L	: OUT std_logic_vector(15 DOWNTO 0);
+		scaled_music_R	: OUT std_logic_vector(15 DOWNTO 0)
+	);
+END component volume_control;
+
 
   
 	SIGNAL AUDIOL, AUDIOR : std_logic_vector(15 downto 0);
-	SIGNAL inbBITclk, inbLRClK: std_logic;
-
+	SIGNAL AudioLAfterVol, AudioRAfterVol : std_logic_vector(15 downto 0);
+	SIGNAL VolumeData : std_logic_vector(7 downto 0);
+	
 	
 
 	BEGIN
 	
 	 i2sin: i2s_in PORT MAP (LR_CLK,BIT_CLK,DIN,reset,AUDIOL,AUDIOR, open, open);
-	 audioout : audio_interface PORT MAP (AUDIOL,AUDIOR,clk,reset,INIT_FINISH,OPEN,OPEN,AUD_MCLK,AUD_BCLK,'0',AUD_DACDAT,AUD_DACLRCK,'0',I2C_SDAT,I2C_SCLK,OPEN);	
-	 spi: spi_async PORT MAP (SCLK, reset, SDATA, CS, open, dig0, dig1);
-	 clockgen: clk_gen PORT MAP(clk, reset, inbBITclk, inbLRClK);
-	 i2out: i2s_out PORT MAP (inbLRClK, inbBITclk, DOUT, LR_CLK_OUT, BIT_CLK_OUT, reset, AUDIOL, AUDIOR, open, open); 
+	 audioout : audio_interface PORT MAP (AudioLafterVol,AudioRafterVol,clk,reset,INIT_FINISH,OPEN,OPEN,AUD_MCLK,AUD_BCLK,'0',AUD_DACDAT,AUD_DACLRCK,'0',I2C_SDAT,I2C_SCLK,OPEN);	
+	 spi: spi_async PORT MAP (SCLK, reset, SDATA, CS, VolumeData, dig0, dig1);
+	 volume: volume_control PORT MAP(reset, AUDIOL, AUDIOR, switch, clk, to_integer(signed(VolumeData)), open, AudioLafterVol, AudioRafterVol);
+	 
 end structure;
