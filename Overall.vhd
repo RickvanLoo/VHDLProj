@@ -95,22 +95,20 @@ component volume_control IS
 	PORT
 	(
 		reset				: IN std_logic;
-		music_L			: IN std_logic_vector(15 DOWNTO 0);
-		music_R			: IN std_logic_vector(15 DOWNTO 0);
+		music_L			: IN signed(15 DOWNTO 0);
+		music_R			: IN signed(15 DOWNTO 0);
 		speak				: IN std_logic;
 		clock				: IN std_logic;
 		volume			: IN integer RANGE 0 TO 100;
 		
 		vol				: OUT integer RANGE 0 TO 100;
-		scaled_music_L	: OUT std_logic_vector(15 DOWNTO 0);
-		scaled_music_R	: OUT std_logic_vector(15 DOWNTO 0)
+		scaled_music_L	: OUT signed(15 DOWNTO 0);
+		scaled_music_R	: OUT signed(15 DOWNTO 0)
 	);
 END component volume_control;
 
-
-  
 	SIGNAL AUDIOL, AUDIOR : std_logic_vector(15 downto 0);
-	SIGNAL AudioLAfterVol, AudioRAfterVol : std_logic_vector(15 downto 0);
+	SIGNAL AudioLAfterVol, AudioRAfterVol : signed(15 downto 0);
 	SIGNAL VolumeData : std_logic_vector(7 downto 0);
 	
 	
@@ -118,8 +116,8 @@ END component volume_control;
 	BEGIN
 	
 	 i2sin: i2s_in PORT MAP (LR_CLK,BIT_CLK,DIN,reset,AUDIOL,AUDIOR, open, open);
-	 audioout : audio_interface PORT MAP (AudioLafterVol,AudioRafterVol,clk,reset,INIT_FINISH,OPEN,OPEN,AUD_MCLK,AUD_BCLK,'0',AUD_DACDAT,AUD_DACLRCK,'0',I2C_SDAT,I2C_SCLK,OPEN);	
+	 audioout : audio_interface PORT MAP (std_logic_vector(AudioLafterVol),std_logic_vector(AudioRafterVol),clk,reset,INIT_FINISH,OPEN,OPEN,AUD_MCLK,AUD_BCLK,'0',AUD_DACDAT,AUD_DACLRCK,'0',I2C_SDAT,I2C_SCLK,OPEN);	
 	 spi: spi_async PORT MAP (SCLK, reset, SDATA, CS, VolumeData, dig0, dig1);
-	 volume: volume_control PORT MAP(reset, AUDIOL, AUDIOR, switch, clk, to_integer(signed(VolumeData)), open, AudioLafterVol, AudioRafterVol);
+	 volume: volume_control PORT MAP(reset, signed(AUDIOL), signed(AUDIOR), switch, clk, to_integer(signed(VolumeData)), open, AudioLafterVol, AudioRafterVol);
 	 
 end structure;

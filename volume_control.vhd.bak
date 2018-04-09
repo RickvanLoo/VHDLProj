@@ -75,8 +75,8 @@ BEGIN
 			-- use volume on the music channels.
 			scaled_vol	<= to_integer(shift_right(to_unsigned((volume) * scalar, 16), 7));
 			vol 			<= scaled_vol;
-			scaled_music_L	<= resize(shift_right(music_L * to_signed(scaled_vol, 16), 7), 16);
-			scaled_music_R	<= resize(shift_right(music_R * to_signed(scaled_vol, 16), 7), 16);
+			scaled_music_L	<= resize(shift_right(music_L * scaled_vol, 7), 16);
+			scaled_music_R	<= resize(shift_right(music_R * scaled_vol, 7), 16);
 		END IF;
 	END PROCESS;
 	

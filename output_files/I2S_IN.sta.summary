@@ -3,451 +3,451 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1100mV 85C Model Setup 'CS'
-Slack : -10.538
-TNS   : -194.417
+Slack : -10.352
+TNS   : -186.950
 
 Type  : Slow 1100mV 85C Model Setup 'clk'
-Slack : -7.874
-TNS   : -506.856
+Slack : -7.890
+TNS   : -496.175
 
 Type  : Slow 1100mV 85C Model Setup 'SCLK'
-Slack : -7.580
-TNS   : -60.592
+Slack : -7.762
+TNS   : -62.036
 
 Type  : Slow 1100mV 85C Model Setup 'reset'
-Slack : -4.255
-TNS   : -28.024
+Slack : -4.632
+TNS   : -29.461
 
 Type  : Slow 1100mV 85C Model Setup 'audio_interface:audioout|i2c_counter[9]'
-Slack : -4.070
-TNS   : -14.517
+Slack : -3.156
+TNS   : -11.880
 
 Type  : Slow 1100mV 85C Model Setup 'BIT_CLK'
-Slack : -0.807
-TNS   : -9.138
+Slack : -0.770
+TNS   : -12.668
 
 Type  : Slow 1100mV 85C Model Hold 'SCLK'
-Slack : -0.868
-TNS   : -6.907
+Slack : -0.706
+TNS   : -5.586
 
 Type  : Slow 1100mV 85C Model Hold 'clk'
-Slack : -0.182
-TNS   : -0.182
+Slack : 0.035
+TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'BIT_CLK'
-Slack : 0.245
+Slack : 0.213
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'audio_interface:audioout|i2c_counter[9]'
-Slack : 0.673
+Slack : 0.520
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'reset'
-Slack : 1.189
+Slack : 1.028
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'CS'
-Slack : 1.998
+Slack : 1.698
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Recovery 'CS'
-Slack : -7.290
-TNS   : -130.220
+Slack : -6.778
+TNS   : -127.982
 
 Type  : Slow 1100mV 85C Model Recovery 'clk'
-Slack : -4.985
-TNS   : -725.560
+Slack : -4.983
+TNS   : -741.054
 
 Type  : Slow 1100mV 85C Model Recovery 'audio_interface:audioout|i2c_counter[9]'
-Slack : -3.629
-TNS   : -14.507
+Slack : -3.072
+TNS   : -11.963
 
 Type  : Slow 1100mV 85C Model Recovery 'BIT_CLK'
-Slack : -2.286
-TNS   : -121.569
+Slack : -2.270
+TNS   : -132.824
 
 Type  : Slow 1100mV 85C Model Recovery 'SCLK'
-Slack : -1.969
-TNS   : -15.684
+Slack : -1.977
+TNS   : -15.744
 
 Type  : Slow 1100mV 85C Model Removal 'BIT_CLK'
-Slack : -4.870
-TNS   : -262.051
+Slack : -4.880
+TNS   : -286.830
 
 Type  : Slow 1100mV 85C Model Removal 'SCLK'
-Slack : -4.525
-TNS   : -36.123
+Slack : -4.510
+TNS   : -36.010
 
 Type  : Slow 1100mV 85C Model Removal 'clk'
-Slack : 1.024
-TNS   : 0.000
-
-Type  : Slow 1100mV 85C Model Removal 'CS'
-Slack : 1.465
+Slack : 1.030
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Removal 'audio_interface:audioout|i2c_counter[9]'
-Slack : 2.015
+Slack : 1.284
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Removal 'CS'
+Slack : 1.447
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clk'
 Slack : -2.225
-TNS   : -137.818
+TNS   : -139.813
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'BIT_CLK'
 Slack : -2.225
-TNS   : -89.801
+TNS   : -102.559
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'SCLK'
 Slack : -0.394
-TNS   : -4.528
+TNS   : -4.560
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'audio_interface:audioout|i2c_counter[9]'
 Slack : -0.394
-TNS   : -2.706
-
-Type  : Slow 1100mV 85C Model Minimum Pulse Width 'reset'
-Slack : 0.093
-TNS   : 0.000
+TNS   : -2.794
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CS'
-Slack : 0.140
+Slack : 0.016
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'reset'
+Slack : 0.036
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Setup 'CS'
-Slack : -10.428
-TNS   : -191.838
+Slack : -10.105
+TNS   : -184.424
 
 Type  : Slow 1100mV 0C Model Setup 'clk'
-Slack : -7.684
-TNS   : -496.336
+Slack : -7.696
+TNS   : -485.322
 
 Type  : Slow 1100mV 0C Model Setup 'SCLK'
-Slack : -7.117
-TNS   : -56.871
-
-Type  : Slow 1100mV 0C Model Setup 'audio_interface:audioout|i2c_counter[9]'
-Slack : -4.157
-TNS   : -14.598
+Slack : -7.315
+TNS   : -58.436
 
 Type  : Slow 1100mV 0C Model Setup 'reset'
-Slack : -4.097
-TNS   : -27.342
+Slack : -4.498
+TNS   : -28.840
+
+Type  : Slow 1100mV 0C Model Setup 'audio_interface:audioout|i2c_counter[9]'
+Slack : -3.338
+TNS   : -12.296
 
 Type  : Slow 1100mV 0C Model Setup 'BIT_CLK'
-Slack : -0.724
-TNS   : -6.078
+Slack : -0.672
+TNS   : -8.561
 
 Type  : Slow 1100mV 0C Model Hold 'SCLK'
-Slack : -1.202
-TNS   : -9.556
+Slack : -1.041
+TNS   : -8.234
 
 Type  : Slow 1100mV 0C Model Hold 'clk'
-Slack : -0.368
-TNS   : -0.596
+Slack : -0.271
+TNS   : -0.612
 
 Type  : Slow 1100mV 0C Model Hold 'BIT_CLK'
-Slack : 0.135
+Slack : 0.111
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'audio_interface:audioout|i2c_counter[9]'
-Slack : 0.692
+Slack : 0.531
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'reset'
-Slack : 1.072
+Slack : 0.928
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'CS'
-Slack : 1.961
+Slack : 1.715
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Recovery 'CS'
-Slack : -6.974
-TNS   : -124.362
+Slack : -6.545
+TNS   : -123.495
 
 Type  : Slow 1100mV 0C Model Recovery 'clk'
-Slack : -4.774
-TNS   : -692.284
+Slack : -4.772
+TNS   : -706.775
 
 Type  : Slow 1100mV 0C Model Recovery 'audio_interface:audioout|i2c_counter[9]'
-Slack : -3.648
-TNS   : -14.585
+Slack : -3.141
+TNS   : -12.299
 
 Type  : Slow 1100mV 0C Model Recovery 'BIT_CLK'
-Slack : -2.224
-TNS   : -118.349
+Slack : -2.209
+TNS   : -129.474
 
 Type  : Slow 1100mV 0C Model Recovery 'SCLK'
-Slack : -1.914
-TNS   : -15.240
+Slack : -1.923
+TNS   : -15.322
 
 Type  : Slow 1100mV 0C Model Removal 'BIT_CLK'
-Slack : -4.740
-TNS   : -253.596
+Slack : -4.746
+TNS   : -277.735
 
 Type  : Slow 1100mV 0C Model Removal 'SCLK'
-Slack : -4.341
-TNS   : -34.645
+Slack : -4.333
+TNS   : -34.588
 
 Type  : Slow 1100mV 0C Model Removal 'clk'
-Slack : 0.895
+Slack : 0.896
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Removal 'CS'
-Slack : 1.197
+Slack : 1.261
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Removal 'audio_interface:audioout|i2c_counter[9]'
-Slack : 1.995
+Slack : 1.285
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clk'
 Slack : -2.225
-TNS   : -144.042
+TNS   : -144.947
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'BIT_CLK'
 Slack : -2.225
-TNS   : -88.781
+TNS   : -101.635
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'SCLK'
 Slack : -0.394
-TNS   : -4.121
+TNS   : -4.168
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'audio_interface:audioout|i2c_counter[9]'
 Slack : -0.394
-TNS   : -2.583
-
-Type  : Slow 1100mV 0C Model Minimum Pulse Width 'reset'
-Slack : 0.105
-TNS   : 0.000
+TNS   : -2.588
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CS'
-Slack : 0.114
+Slack : 0.032
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'reset'
+Slack : 0.063
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Setup 'SCLK'
-Slack : -5.736
-TNS   : -45.855
+Slack : -5.854
+TNS   : -46.810
 
 Type  : Fast 1100mV 85C Model Setup 'CS'
-Slack : -5.437
-TNS   : -97.833
+Slack : -5.519
+TNS   : -93.213
 
 Type  : Fast 1100mV 85C Model Setup 'clk'
-Slack : -4.941
-TNS   : -264.716
+Slack : -4.950
+TNS   : -256.533
 
 Type  : Fast 1100mV 85C Model Setup 'reset'
-Slack : -2.558
-TNS   : -16.445
+Slack : -2.820
+TNS   : -17.715
 
 Type  : Fast 1100mV 85C Model Setup 'audio_interface:audioout|i2c_counter[9]'
-Slack : -2.144
-TNS   : -7.475
+Slack : -1.538
+TNS   : -5.753
 
 Type  : Fast 1100mV 85C Model Setup 'BIT_CLK'
-Slack : -0.125
-TNS   : -0.467
-
-Type  : Fast 1100mV 85C Model Hold 'SCLK'
-Slack : 0.036
-TNS   : 0.000
+Slack : -0.159
+TNS   : -0.310
 
 Type  : Fast 1100mV 85C Model Hold 'clk'
-Slack : 0.054
+Slack : 0.082
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'BIT_CLK'
-Slack : 0.136
+Slack : 0.122
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'SCLK'
+Slack : 0.132
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'audio_interface:audioout|i2c_counter[9]'
-Slack : 0.349
+Slack : 0.312
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'CS'
-Slack : 0.869
+Slack : 0.689
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'reset'
-Slack : 1.198
+Slack : 1.103
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Recovery 'CS'
-Slack : -4.753
-TNS   : -84.609
+Slack : -4.283
+TNS   : -80.562
 
 Type  : Fast 1100mV 85C Model Recovery 'clk'
-Slack : -2.915
-TNS   : -434.051
+Slack : -2.913
+TNS   : -443.024
 
 Type  : Fast 1100mV 85C Model Recovery 'audio_interface:audioout|i2c_counter[9]'
-Slack : -1.861
-TNS   : -7.437
+Slack : -1.504
+TNS   : -5.778
 
 Type  : Fast 1100mV 85C Model Recovery 'BIT_CLK'
-Slack : -1.412
-TNS   : -76.260
+Slack : -1.402
+TNS   : -83.035
 
 Type  : Fast 1100mV 85C Model Recovery 'SCLK'
-Slack : -1.262
-TNS   : -10.067
+Slack : -1.265
+TNS   : -10.098
 
 Type  : Fast 1100mV 85C Model Removal 'BIT_CLK'
-Slack : -2.649
-TNS   : -142.340
+Slack : -2.658
+TNS   : -156.105
 
 Type  : Fast 1100mV 85C Model Removal 'SCLK'
-Slack : -2.460
-TNS   : -19.641
+Slack : -2.454
+TNS   : -19.598
 
 Type  : Fast 1100mV 85C Model Removal 'clk'
 Slack : 0.557
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Removal 'CS'
-Slack : 1.083
-TNS   : 0.000
-
 Type  : Fast 1100mV 85C Model Removal 'audio_interface:audioout|i2c_counter[9]'
-Slack : 1.318
+Slack : 0.878
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clk'
-Slack : -1.702
-TNS   : -64.723
+Type  : Fast 1100mV 85C Model Removal 'CS'
+Slack : 0.911
+TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'BIT_CLK'
 Slack : -1.702
-TNS   : -64.670
+TNS   : -74.586
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clk'
+Slack : -1.702
+TNS   : -66.158
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'SCLK'
-Slack : -0.258
-TNS   : -2.075
-
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'reset'
-Slack : -0.119
-TNS   : -1.010
+Slack : -0.263
+TNS   : -2.133
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CS'
-Slack : -0.110
-TNS   : -2.688
+Slack : -0.187
+TNS   : -5.370
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'reset'
+Slack : -0.162
+TNS   : -0.984
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'audio_interface:audioout|i2c_counter[9]'
-Slack : 0.115
-TNS   : 0.000
+Slack : -0.050
+TNS   : -0.195
 
 Type  : Fast 1100mV 0C Model Setup 'CS'
-Slack : -5.129
-TNS   : -93.285
-
-Type  : Fast 1100mV 0C Model Setup 'clk'
-Slack : -4.924
-TNS   : -248.257
+Slack : -5.160
+TNS   : -89.200
 
 Type  : Fast 1100mV 0C Model Setup 'SCLK'
-Slack : -4.911
-TNS   : -39.264
+Slack : -5.024
+TNS   : -40.180
+
+Type  : Fast 1100mV 0C Model Setup 'clk'
+Slack : -4.932
+TNS   : -241.753
 
 Type  : Fast 1100mV 0C Model Setup 'reset'
-Slack : -2.412
-TNS   : -15.718
+Slack : -2.648
+TNS   : -16.826
 
 Type  : Fast 1100mV 0C Model Setup 'audio_interface:audioout|i2c_counter[9]'
-Slack : -2.103
-TNS   : -7.311
+Slack : -1.551
+TNS   : -5.752
 
 Type  : Fast 1100mV 0C Model Setup 'BIT_CLK'
-Slack : -0.005
-TNS   : -0.005
+Slack : -0.047
+TNS   : -0.047
 
 Type  : Fast 1100mV 0C Model Hold 'SCLK'
-Slack : -0.376
-TNS   : -2.989
+Slack : -0.294
+TNS   : -2.336
 
 Type  : Fast 1100mV 0C Model Hold 'clk'
-Slack : -0.131
-TNS   : -0.403
+Slack : -0.194
+TNS   : -1.200
 
 Type  : Fast 1100mV 0C Model Hold 'BIT_CLK'
-Slack : 0.070
+Slack : 0.061
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'audio_interface:audioout|i2c_counter[9]'
-Slack : 0.332
+Slack : 0.285
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'CS'
-Slack : 0.833
+Slack : 0.652
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'reset'
-Slack : 1.152
+Slack : 1.042
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Recovery 'CS'
-Slack : -4.027
-TNS   : -71.179
+Slack : -3.638
+TNS   : -68.221
 
 Type  : Fast 1100mV 0C Model Recovery 'clk'
-Slack : -2.826
-TNS   : -420.288
+Slack : -2.825
+TNS   : -428.976
 
 Type  : Fast 1100mV 0C Model Recovery 'audio_interface:audioout|i2c_counter[9]'
-Slack : -1.810
-TNS   : -7.236
+Slack : -1.488
+TNS   : -5.757
 
 Type  : Fast 1100mV 0C Model Recovery 'BIT_CLK'
-Slack : -1.393
-TNS   : -75.414
+Slack : -1.384
+TNS   : -82.147
 
 Type  : Fast 1100mV 0C Model Recovery 'SCLK'
-Slack : -1.233
-TNS   : -9.835
+Slack : -1.237
+TNS   : -9.866
 
 Type  : Fast 1100mV 0C Model Removal 'BIT_CLK'
-Slack : -2.634
-TNS   : -141.352
+Slack : -2.640
+TNS   : -154.898
 
 Type  : Fast 1100mV 0C Model Removal 'SCLK'
-Slack : -2.453
-TNS   : -19.589
+Slack : -2.447
+TNS   : -19.542
 
 Type  : Fast 1100mV 0C Model Removal 'clk'
-Slack : 0.484
+Slack : 0.486
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Removal 'CS'
-Slack : 0.750
+Slack : 0.632
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Removal 'audio_interface:audioout|i2c_counter[9]'
-Slack : 1.317
+Slack : 0.927
 TNS   : 0.000
-
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clk'
-Slack : -1.702
-TNS   : -64.930
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'BIT_CLK'
 Slack : -1.702
-TNS   : -64.296
+TNS   : -74.251
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clk'
+Slack : -1.702
+TNS   : -66.107
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'SCLK'
-Slack : -0.247
-TNS   : -1.987
+Slack : -0.251
+TNS   : -2.032
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CS'
-Slack : -0.109
-TNS   : -2.979
+Slack : -0.163
+TNS   : -4.542
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'reset'
-Slack : -0.097
-TNS   : -0.783
+Slack : -0.127
+TNS   : -0.836
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'audio_interface:audioout|i2c_counter[9]'
-Slack : 0.128
-TNS   : 0.000
+Slack : -0.036
+TNS   : -0.141
 
 ------------------------------------------------------------
