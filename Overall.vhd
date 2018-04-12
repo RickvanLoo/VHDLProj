@@ -16,6 +16,12 @@ ENTITY Overall IS
 		BIT_CLK   : in  std_logic;      --Bit clock
 		DIN       : in  std_logic;      --Data Input
 		
+		-- I2S OUT
+		LR_CLK_OUT : out std_logic;
+		BIT_CLK_OUT : out std_logic;
+		DOUT : out std_logic;
+
+		
 		-- SPI SHIT
 		SCLK 	: IN std_logic;
 		SDATA 	: IN std_logic;
@@ -107,17 +113,135 @@ component volume_control IS
 	);
 END component volume_control;
 
-	SIGNAL AUDIOL, AUDIOR : std_logic_vector(15 downto 0);
+component i2s_out is 
+-- width: How many bits (from MSB) are gathered from the serial I2S input
+generic(width : integer := 16);
+
+port(
+	--  I2S ports
+	LR_CLK    : in  std_logic;      --Left/Right indicator clock
+	BIT_CLK   : in  std_logic;      --Bit clock
+	DOUT      : out std_logic;      --Data Output
+	
+	-- Control ports
+	RESET     : in  std_logic;      --Asynchronous Reset (Active Low)
+	
+	-- Parallel ports 
+	-- use (width-1 downto 0); for big endian fotmat 
+	-- or (0 to width-1) for little endian
+	DATA_L    : in std_logic_vector(0 to width-1);
+	DATA_R    : in std_logic_vector(0 to width-1);
+	
+	--HACKS
+	LR_CLK_OUT : out std_logic;
+	BIT_CLK_OUT : out std_logic;
+	
+	-- Output status ports
+	DATA_RDY_L    : out std_logic;      --Falling edge means data is ready
+	DATA_RDY_R    : out std_logic       --Falling edge means data is ready
+);
+end component i2s_out;
+
+component cf_entity is
+generic (  
+           input_width         : integer     :=16               ;-- set input width by user  
+           output_width     	 : integer     :=32               ;-- set output width by user  
+           coef_width          : integer     :=16               ;-- set coefficient width by user  
+           tap                 : integer     :=81               ;-- set filter order  
+           guard               : integer     :=0)               ;-- log2(tap)+1 
+ port (
+	DATA_L    : in std_logic_vector(input_width-1 downto 0);
+	DATA_R    : in std_logic_vector(input_width-1 downto 0);
+ 	LR_CLK        : in  std_logic;
+	reset        : in  std_logic;
+	y_data     	 : out      std_logic_vector(output_width-1 downto 0);  
+	DATA_RDY_L    : in std_logic;
+	DATA_RDY_R    : in std_logic 
+	);
+end component cf_entity;
+
+component musicbuffer is 
+-- width: How many bits (from MSB) are gathered from the serial I2S input
+generic(width : integer := 16);
+
+port(
+	-- RESET
+	RESET	 : in std_logic;
+	
+	-- clk
+	CLK : in std_logic;
+	
+	-- input status ports
+	DATA_RDY_L    : in std_logic;     --Falling edge means data is ready
+	DATA_RDY_R    : in std_logic;      --Falling edge means data is ready
+	
+	-- Parallel ports
+	DATA_L_IN    : in std_logic_vector(width-1 downto 0);
+	DATA_R_IN    : in std_logic_vector(width-1 downto 0);
+	DATA_L_OUT    : out std_logic_vector(width-1 downto 0);
+	DATA_R_OUT    : out std_logic_vector(width-1 downto 0)
+);
+end component musicbuffer;
+
+component clk_gen is 
+-- width: How many bits (from MSB) are gathered from the serial I2S input
+generic(
+		width       : integer := 16;
+		clk_divider : integer :=  4  -- a multiple of 2
+);
+port(
+	--  Input ports
+	CLK        : in std_logic;       --System clock
+
+	-- Control ports
+	RESET      : in std_logic;       --Asynchronous Reset (Active Low)
+
+	-- Output ports
+	BIT_CLK    : out std_logic;      --Bit Clock
+	LR_CLK     : out std_logic       --Left/Right Clock
+);
+end component clk_gen;
+
+component PreOutBuffer is 
+-- width: How many bits (from MSB) are gathered from the serial I2S input
+generic(width : integer := 16);
+
+port(
+	-- RESET
+	RESET	 : in std_logic;
+	
+	-- clk
+	LR_CLK : in std_logic;
+	
+	-- Parallel ports
+	DATA_L_IN    : in std_logic_vector(width-1 downto 0);
+	DATA_R_IN    : in std_logic_vector(width-1 downto 0);
+	DATA_L_OUT    : out std_logic_vector(width-1 downto 0);
+	DATA_R_OUT    : out std_logic_vector(width-1 downto 0)
+);
+end component PreOutBuffer;
+
+	SIGNAL AUDIOL, AUDIOR, AUDIOLBuffed, AUDIORBuffed : std_logic_vector(15 downto 0);
 	SIGNAL AudioLAfterVol, AudioRAfterVol : signed(15 downto 0);
+	SIGNAL readyl, readyr : std_logic;
 	SIGNAL VolumeData : std_logic_vector(7 downto 0);
 	
-	
+	SIGNAL bitclkout, lrclkout : std_logic;
+	SIGNAL ToDacBuffL, ToDacBuffR : std_logic_vector(15 downto 0);
 
 	BEGIN
 	
-	 i2sin: i2s_in PORT MAP (LR_CLK,BIT_CLK,DIN,reset,AUDIOL,AUDIOR, open, open);
+	 -- Main signal line
+	 i2sin: i2s_in PORT MAP (LR_CLK,BIT_CLK,DIN,reset,AUDIOL,AUDIOR, readyl, readyr);
+	 buff : musicbuffer PORT MAP (reset, clk, readyl, readyr, AUDIOL, AUDIOR, AUDIOLBuffed, AUDIORBuffed);
 	 audioout : audio_interface PORT MAP (std_logic_vector(AudioLafterVol),std_logic_vector(AudioRafterVol),clk,reset,INIT_FINISH,OPEN,OPEN,AUD_MCLK,AUD_BCLK,'0',AUD_DACDAT,AUD_DACLRCK,'0',I2C_SDAT,I2C_SCLK,OPEN);	
 	 spi: spi_async PORT MAP (SCLK, reset, SDATA, CS, VolumeData, dig0, dig1);
-	 volume: volume_control PORT MAP(reset, signed(AUDIOL), signed(AUDIOR), switch, clk, to_integer(signed(VolumeData)), open, AudioLafterVol, AudioRafterVol);
+	 volume: volume_control PORT MAP(reset, signed(AUDIOLBuffed), signed(AUDIORBuffed), switch, clk, to_integer(signed(VolumeData)), open, AudioLafterVol, AudioRafterVol);
+	 
+	 
+	 --2nd DAC signal line
+	 meinclock: clk_gen PORT MAP(clk, reset, bitclkout, lrclkout);
+	 buffmijnshitup: PreOutBuffer PORT MAP (reset, lrclkout, std_logic_vector(AudioLAfterVol), std_logic_vector(AudioRAfterVol), ToDacBuffL, ToDacBuffR);
+	 tootherdac: i2s_out PORT MAP(lrclkout, bitclkout, DOUT, reset, ToDacBuffL, ToDacBuffR, LR_CLK_OUT, BIT_CLK_OUT, open, open);
 	 
 end structure;
